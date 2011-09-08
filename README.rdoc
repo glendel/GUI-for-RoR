@@ -5,6 +5,7 @@ Practical and easy to use GUI made with jQuery UI for Ruby on Rails.
 == Used Tools
 
 * {Ruby 1.8.7}[http://www.ruby-lang.org/] + {Rails 2.3.12}[http://rubyonrails.org/]
-* {MySQL}[http://www.mysql.com/]
+* {Bundle}[http://gembundler.com/] Used to manage the application's dependencies.
+* {MySQL}[http://www.mysql.com/] Used database.
 * {jQuery}[http://jquery.com/] + {jquery-ujs}[https://github.com/rails/jquery-ujs] ( jQuery.rails.js ) instead of Prototype to handle the AJAX requests and JavaScript stuff.
 * {jQuery UI}[http://jqueryui.com/]
