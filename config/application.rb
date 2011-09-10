@@ -1,10 +1,18 @@
 # Be sure to restart your server when you modify this file
 
+# Uncomment below to force Rails into production mode when
+# you don't control web/app server and can't set it the proper way
+#ENV[ 'RAILS_ENV' ] = 'production'
+
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.12' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+
+CONFIG = YAML.load_file( "#{Rails.root}/config/application.yml" )[ ENV[ 'RAILS_ENV' ] ]
+#require 'erb'
+#CONFIG = YAML.load( ERB.new( File.read( "#{Rails.root}/config/application.yml" ) ).result )[ ENV[ 'RAILS_ENV' ] ]
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -38,8 +46,4 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
-  
-  # JavaScript files you want as :defaults (application.js is always included).
-  # config.action_view.javascript_expansions[:defaults] = %w( jquery rails )
-  config.action_view.javascript_expansions[:defaults] = %w( jquery/jquery.rails )
 end
