@@ -1,0 +1,29 @@
+# http://en.wikipedia.org/wiki/YAML
+default: &common
+  # Settings to configure Action Mailer.
+  action_mailer:
+    raise_delivery_errors: true
+    delivery_method: smtp
+    smtp_settings:
+      address: mail.wssinternational.net
+      # Most used values for port : 26, 587, and 465
+      port: 26
+      domain: wssinternational.net
+      user_name: notifier@wssinternational.net
+      password: S@Qw*H1!y;Fe
+      # The valid values for this field are : :plain, :login, and :cram_md5
+      authentication: plain
+    default_url_options:
+      host: localhost:8080
+  # Settings to configure Exception Notification.
+  exception_notification:
+    email_prefix: "[WSSInternational] - "
+    # There is a bug in the "smtp.rb" file in Ruby 1.8.7 and we cannot do this : "'Notifier' <notifier@websinfronteras.net>" so we have just to do this : "notifier@websinfronteras.net"
+    sender_address: notifier@websinfronteras.net
+    exception_recipients: "'Glendel J. Fyne' <glendel@websinfronteras.net>"
+development:
+  <<: *common
+test:
+  <<: *common
+production:
+  <<: *common
