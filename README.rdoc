@@ -7,7 +7,22 @@ Practical and easy to use GUI made with jQuery UI for Ruby on Rails.
 * {Ruby 1.8.7}[http://www.ruby-lang.org/] + {Rails 2.3.12}[http://rubyonrails.org/]
 * {MySQL}[http://www.mysql.com/] Used database.
 * {Bundle}[http://gembundler.com/] Used to manage the application's dependencies.
-* {jQuery}[http://jquery.com/] + {jquery-ujs}[https://github.com/rails/jquery-ujs] ( jQuery.rails.js ) instead of Prototype to handle the AJAX requests and JavaScript stuff.
+* {jQuery}[http://jquery.com/] + {jquery-ujs}[http://github.com/rails/jquery-ujs] ( jQuery.rails.js ) instead of Prototype to handle the AJAX requests and JavaScript stuff.
 * {jQuery UI}[http://jqueryui.com/] UI built on top the {jQuery}[http://jquery.com/] JavaScript Library.
 * {Action Mailer}[http://guides.rubyonrails.org/v2.3.11/action_mailer_basics.html] This will allow us send and receive emails from the application.
 * {Exception Notifier}[http://github.com/smartinez87/exception_notification] Plugin to provides a mailer object for sending email notificactions when errors occur.
+* {Warden}[http://github.com/hassox/warden] General Rack Authentication Framework needed to work with {Devise}[http://github.com/plataformatec/devise].
+* {Devise}[http://github.com/plataformatec/devise] Flexible authentication solution for Rails with {Warden}[http://github.com/hassox/warden].
+* {CanCan}[http://github.com/ryanb/cancan] Authorization Gem for Ruby on Rails.
+
+== Getting Started
+
+Still working on
+
+== Useful Documentation
+
+* {Ruby on Rails Guides}[http://guides.rubyonrails.org/v2.3.11/]
+* {Bundle for Rails 2.3.x}[http://gembundler.com/rails23.html]
+* {Devise for Rails 2.3.x}[http://github.com/plataformatec/devise/tree/v1.0#readme]
+* {Devise Wiki}[http://github.com/plataformatec/devise/wiki]
+* {CanCan Wiki}[http://github.com/ryanb/cancan/wiki]
