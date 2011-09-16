@@ -1,0 +1,34 @@
+es:
+  devise:
+    sessions:
+      link: 'Ingresar'
+      signed_in: 'Ha iniciado sesión exitosamente.'
+      signed_out: 'Ha finalizado sesión exitosamente.'
+      unauthenticated: 'Es necesario iniciar sesión o registrarse antes de continuar.'
+      unconfirmed: 'Por favor, confirme su cuenta antes de continuar.'
+      locked: 'Su cuenta está bloqueada.'
+      invalid: 'Correo electrónico o contraseña no válidos.'
+      invalid_token: 'Token de autenticación inválido.'
+      timeout: 'Su sesión ha caducado, por favor ingrese de nuevo para continuar.'
+      inactive: 'Su cuenta aún no se ha activado.'
+    passwords:
+      link: '¿Olvidó su contraseña?'
+      send_instructions: 'Usted recibirá un correo electrónico con instrucciones acerca de cómo restablecer su contraseña en unos minutos.'
+      updated: 'Su contraseña se ha cambiado exitosamente. Usted ahora ha iniciado sesión.'
+    confirmations:
+      link: '¿No recibió instrucciones de confirmación?'
+      send_instructions: 'Usted recibirá un correo electrónico con instrucciones sobre cómo confirmar su cuenta en pocos minutos.'
+      confirmed: 'Su cuenta fue confirmada exitosamente. Usted ahora ha iniciado sesión.'
+    registrations:
+      link: 'Regístrate'
+      signed_up: 'Se ha registrado exitosamente. Si está activado, una confirmación fue enviada a su correo electrónico.'
+      updated: 'Ha actualizado su cuenta exitosamente.'
+      destroyed: 'Bye! Su cuenta fue cancelada exitosamente. Esperamos volver a verte pronto.'
+    unlocks:
+      link: '¿No recibió instrucciones de desbloqueo?'
+      send_instructions: 'Usted recibirá un correo electrónico con instrucciones sobre cómo desbloquear su cuenta en pocos minutos.'
+      unlocked: 'Su cuenta ha sido desbloqueada exitosamente. Usted ahora ha iniciado sesión.'
+    mailer:
+      confirmation_instructions: 'Instrucciones de confirmación'
+      reset_password_instructions: 'Instrucciones para restablecer contraseña'
+      unlock_instructions: 'Instrucciones para desbloquear'
