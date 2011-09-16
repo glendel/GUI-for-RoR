@@ -1,4 +1,6 @@
 Gemfile.lock
+config/database.yml
+config/application.yml
 db/*.sqlite3
 log/*.log
 tmp/
