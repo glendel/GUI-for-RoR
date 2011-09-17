@@ -26,3 +26,11 @@ Still working on
 * {Devise for Rails 2.3.x}[http://github.com/plataformatec/devise/tree/v1.0#readme]
 * {Devise Wiki}[http://github.com/plataformatec/devise/wiki]
 * {CanCan Wiki}[http://github.com/ryanb/cancan/wiki]
+
+== Useful Railcasts
+
+* {Episode 238 - Unobtrusive Javascript}[http://railscasts.com/episodes/205-unobtrusive-javascript]
+* {Episode 201 - Bundler}[http://railscasts.com/episodes/201-bundler]
+* {Episode 209 - Introducing Devise}[http://railscasts.com/episodes/209-introducing-devise]
+* {Episode 210 - Customizing Devise}[http://railscasts.com/episodes/210-customizing-devise]
+* {Episode 192 - Authorization with CanCan}[http://railscasts.com/episodes/192-authorization-with-cancan]
