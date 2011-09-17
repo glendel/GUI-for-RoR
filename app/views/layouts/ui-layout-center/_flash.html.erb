@@ -1,0 +1,29 @@
+<%
+  msg_name = flash[0]
+  msg_label = 'Notice !'
+  msg = flash[1]
+  
+  div_class = 'ui-state-default'
+  div_style = 'margin-top: 20px; padding: 0 .7em;'
+  icon_class = 'ui-icon-notice'
+  icon_style = 'float: left; margin-right: .3em;'
+  
+  if ( msg_name == :warning )
+    msg_label = 'Warning !'
+    div_class = 'ui-state-highlight'
+    icon_class = 'ui-icon-info'
+  elsif ( msg_name == :error )
+    msg_label = 'Error :'
+    div_class = 'ui-state-error'
+    div_style = 'padding: 0 .7em;'
+    icon_class = 'ui-icon-alert'
+  end
+%>
+<div class="ui-flash">
+  <div class="<%= div_class %> ui-corner-all" style="<%= div_style %>">
+    <p>
+      <span class="ui-icon <%= icon_class %>" style="<%= icon_style %>"></span>
+      <strong><%= msg_label %></strong> <%= msg %>
+    </p>
+  </div>
+</div>

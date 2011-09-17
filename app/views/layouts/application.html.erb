@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="copyright" content="Worldwide Systems Services SAS © <%= Time.now.year %>" />
+    <meta name="author" content="Worldwide Systems Services SAS" />
+    <meta name="contact" content="contactenos@wssinternational.net" />
+    <!--[if IE]>
+      <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title><%= yield( :title ) %></title>
+    <%= csrf_meta_tag %>
+    <link id="themes_lnk" rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" />
+    <%= stylesheet_link_tag( 'application' ) %>
+  <%-
+    stylesheets_path = File.join( RAILS_ROOT, 'public', 'stylesheets' )
+    stylesheet_for_controller = File.join( stylesheets_path, "#{controller_name}.css" )
+    stylesheet_for_action = File.join( stylesheets_path, controller_name, "#{action_name}.css" )
+  -%>
+    <%= stylesheet_link_tag( "#{controller_name}" ) if ( File.exist?( stylesheet_for_controller ) ) %>
+    <%= stylesheet_link_tag( "#{controller_name}/#{action_name}" ) if ( File.exist?( stylesheet_for_action ) ) %>
+    <%= yield( :head ) %>
+  </head>
+  <body>
+  <%- if ( user_signed_in? ) -%>
+    <div class="ui-layout-north">
+      <%= render( { :partial => 'layouts/ui-layout-north/menu_bar' } ) %>
+    </div>
+    <div class="ui-layout-west">
+      West
+    </div>
+  <%- end -%>
+    <div id="global-content" class="ui-layout-center">
+      <%= render( { :partial => 'layouts/ui-layout-center/header' } ) %>
+      <%= render( { :partial => 'layouts/ui-layout-center/content' } ) %>
+      <%= render( { :partial => 'layouts/ui-layout-center/footer' } ) %>
+    </div>
+  <%- if ( user_signed_in? ) -%>
+    <div class="ui-layout-east">
+      East
+    </div>
+    <div class="ui-layout-south">
+      <%= render( { :partial => 'layouts/ui-layout-south/task_bar' } ) %>
+    </div>
+  <%- end -%>
+    <%= javascript_include_tag( 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js' ) %>
+    <%= javascript_include_tag( 'jquery/jquery.rails.js' ) %>
+    <%= javascript_include_tag( 'application' ) %>
+  <%-
+    javascripts_path = File.join( RAILS_ROOT, 'public', 'javascripts' )
+    javascript_for_controller = File.join( javascripts_path, "#{controller_name}.js" )
+    javascript_for_action = File.join( javascripts_path, controller_name, "#{action_name}.js" )
+  -%>
+    <%= javascript_include_tag( "#{controller_name}" ) if ( File.exist?( javascript_for_controller ) ) %>
+    <%= javascript_include_tag( "#{controller_name}/#{action_name}" ) if ( File.exist?( javascript_for_action ) ) %>
+    <%= yield( :bottom ) %>
+<script type="text/javascript">
+//<![CDATA[
+  jQuery( document ).ready( function( $ ) {
+    var jQueryUiUrl = 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js';
+    
+    $.getScript( jQueryUiUrl, function( data, textStatus ) {
+      var jQueryLayoutUrl = 'http://layout.jquery-dev.net/lib/js/jquery.layout-latest.js';
+      
+      $.getScript( jQueryLayoutUrl, function( data, textStatus ) {
+        var bodyLayoutOptions = {
+          
+        };
+        bodyLayout = $( 'body' ).layout( bodyLayoutOptions );
+        bodyLayout.allowOverflow( 'north' ); // Needed for the menus.
+      });
+      
+      <%= yield( :document_ready_ui ) %>
+    });
+    
+    <%= yield( :document_ready ) %>
+  });
+  
+  jQuery( window ).load( function( eventObject ) {
+    <%= yield( :window_load ) %>
+  });
+//]]>
+</script>
+  </body>
+</html>
