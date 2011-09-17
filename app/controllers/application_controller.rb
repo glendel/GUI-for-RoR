@@ -2,6 +2,12 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  # With this line we ensure that only an authenticated user will be able to use the application.
+  before_filter :authenticate_user!
+  
+  # With this line we ensure that the authorization happens on every action in the application.
+  #check_authorization
+  
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
