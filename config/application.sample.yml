@@ -24,6 +24,7 @@ default: &common
   # Settings to configure the "authentication" gem "devise". Please refer to "config/initializers/devise.rb" for more details about the configuration variables and values.
   devise:
     mailer_sender: notifier@my_domain
+    scoped_views: true
 development:
   <<: *common
 test:
