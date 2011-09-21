@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   before_filter :load_and_set_settings
   
   # With this line we ensure that the authorization happens on every action in the application.
-  check_authorization
+  check_authorization :if => :check_authorization?
   
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -23,13 +23,48 @@ class ApplicationController < ActionController::Base
   
   # Exceptions handlers
   #rescue_from Exception, :with => :rescue_from_exception
-  #rescue_from CanCan::AccessDenied, :with => :rescue_from_cancan
+  rescue_from CanCan::AccessDenied, :with => :rescue_from_cancan
   
   protected
+    #----------------------------------------------------------------------------------------------------
+    # current_ability
+    # 
+    # This method is to override the original one used by "CanCan" to create and return the current_user's ability.
+    #----------------------------------------------------------------------------------------------------
+    def current_ability
+      @current_ability ||= UserAbility.new( current_user )
+    end
+    
     #----------------------------------------------------------------------------------------------------
     # load_and_set_settings
     #----------------------------------------------------------------------------------------------------
     def load_and_set_settings
+      if ( devise_controller? )
+        if ( controller_name == 'registrations' )
+          authorize! action_name.to_sym, current_user
+        elsif ( controller_name == 'passwords' )
+          authorize! action_name.to_sym, current_user
+        end
+      end
+    end
+    
+    #----------------------------------------------------------------------------------------------------
+    # check_authorization?
+    #----------------------------------------------------------------------------------------------------
+    def check_authorization?
+      if ( devise_controller? )
+        if ( controller_name == 'sessions' )
+          return( false )
+        end
+      end
       
+      return( true )
+    end
+    
+    #----------------------------------------------------------------------------------------------------
+    # rescue_from_cancan
+    #----------------------------------------------------------------------------------------------------
+    def rescue_from_cancan( exc )
+      redirect_to( new_user_session_path( :unauthenticated => true ) )
     end
 end
