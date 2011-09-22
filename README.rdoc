@@ -17,7 +17,36 @@ Practical and easy to use GUI made with jQuery UI for Ruby on Rails.
 
 == Getting Started
 
-Still working on
+NOTE : These instructions were made assuming that you already have installed and running {Git}[http://git-scm.com/], {MySQL}[http://www.mysql.com/], {Ruby 1.8.7}[http://www.ruby-lang.org/en/downloads/], and the {Bundle}[http://gembundler.com/] gem.
+
+Go to your {Rails}[http://rubyonrails.org/] projects folder and clone this project :
+
+    git clone git://github.com/glendel/GUI-for-RoR.git my_new_folder
+
+Then :
+
+    cd my_new_folder
+
+Rename and edit according to your particular settings the "{application.sample.yml}[http://github.com/glendel/GUI-for-RoR/blob/master/config/application.sample.yml]" and the "{database.sample.yml}[http://github.com/glendel/GUI-for-RoR/blob/master/config/database.sample.yml]" files by something like "application.yml" and "database.yml".
+
+Now lets install the needed gems using the {bundle}[http://gembundler.com/] command ( please refer to the "{Gemfile}[http://github.com/glendel/GUI-for-RoR/blob/master/Gemfile]" file for more details about the used gems ).
+
+    [sudo] bundle install
+
+NOTE : Windows users better use the "mysql" gem instead of the "mysql2" in order to avoid an error building the gem with native extensions.
+
+== Quick Start
+
+If everything has gone fine so far and you have already the this application with its "required" gems, let's create and migrate the database :
+
+    rake db:create
+    rake db:migrate
+
+NOTE : If you are a Windows user and you are having this error : "193: %1 is not a valid Win32 application." please go {here}[http://stackoverflow.com/questions/1208029/193-1-is-not-a-valid-win32-application-bug-with-a-new-rails-application] for the solution.
+
+Now we are going to load into the database some seeds with values by default needed for the proper initial operation of the application ( please refer to the "{seeds.rb}[http://github.com/glendel/GUI-for-RoR/blob/master/db/seeds.rb]" file for more details about the initial data that will be loaded ).
+
+    rake db:seed
 
 == Useful Documentation
 
@@ -34,3 +63,4 @@ Still working on
 * {Episode 209 - Introducing Devise}[http://railscasts.com/episodes/209-introducing-devise]
 * {Episode 210 - Customizing Devise}[http://railscasts.com/episodes/210-customizing-devise]
 * {Episode 192 - Authorization with CanCan}[http://railscasts.com/episodes/192-authorization-with-cancan]
+* {Episode 179 - Seed Data}[http://railscasts.com/episodes/179-seed-data]
