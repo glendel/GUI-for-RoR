@@ -32,3 +32,59 @@ admin_role = Role.create!( {
 # Create the relationship between the Admin User and the Admin Role
 puts 'Creating the relationship between the Admin User and the Admin Role.'
 admin_user.roles << admin_role
+
+# Create Admin Menu
+puts 'Creating the Admin Menu.'
+admin_menu = Menu.create!( {
+  :name => 'Admin',
+  :created_by => admin_user.id,
+  :updated_by => admin_user.id
+} )
+
+# Create Users Menu Item
+puts 'Creating the Users Menu Item.'
+users_menu_item = MenuItem.create!( {
+  :name => 'Users',
+  :created_by => admin_user.id,
+  :updated_by => admin_user.id
+} )
+
+# Create Roles Menu Item
+puts 'Creating the Roles Menu Item.'
+roles_menu_item = MenuItem.create!( {
+  :name => 'Roles',
+  :created_by => admin_user.id,
+  :updated_by => admin_user.id
+} )
+
+# Create Menus Menu Item
+puts 'Creating the Menus Menu Item.'
+menus_menu_item = MenuItem.create!( {
+  :name => 'Menus',
+  :created_by => admin_user.id,
+  :updated_by => admin_user.id
+} )
+
+# Create Menu Items Menu Item
+puts 'Creating the Menu Items Menu Item.'
+menu_items_menu_item = MenuItem.create!( {
+  :name => 'Menu Items',
+  :created_by => admin_user.id,
+  :updated_by => admin_user.id
+} )
+
+# Create the relationship between the Admin Menu and the Users Menu Item
+puts 'Creating the relationship between the Admin Menu and the Users Menu Item.'
+admin_menu.menu_items << users_menu_item
+
+# Create the relationship between the Admin Menu and the Roles Menu Item
+puts 'Creating the relationship between the Admin Menu and the Roles Menu Item.'
+admin_menu.menu_items << roles_menu_item
+
+# Create the relationship between the Admin Menu and the Menus Menu Item
+puts 'Creating the relationship between the Admin Menu and the Menus Menu Item.'
+admin_menu.menu_items << menus_menu_item
+
+# Create the relationship between the Admin Menu and the Menu Items Menu Item
+puts 'Creating the relationship between the Admin Menu and the Menu Items Menu Item.'
+admin_menu.menu_items << menu_items_menu_item
