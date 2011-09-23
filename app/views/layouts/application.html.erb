@@ -22,25 +22,25 @@
     <%= stylesheet_link_tag( "#{controller_name}/#{action_name}" ) if ( File.exist?( stylesheet_for_action ) ) %>
     <%= yield( :head ) %>
   </head>
-  <body>
+  <body class="ui-widget">
   <%- if ( user_signed_in? ) -%>
-    <div class="ui-layout-north">
+    <div class="ui-layout-north" style="display:none;">
       <%= render( { :partial => 'layouts/ui-layout-north/menu_bar' } ) %>
     </div>
-    <div class="ui-layout-west">
-      West
+    <div class="ui-layout-west" style="display:none;">
+      <%= render( { :partial => 'layouts/ui-layout-west/left_bar' } ) %>
     </div>
   <%- end -%>
-    <div id="global-content" class="ui-layout-center">
+    <div id="global-content" class="ui-layout-center" style="display:none;">
       <%= render( { :partial => 'layouts/ui-layout-center/header' } ) %>
       <%= render( { :partial => 'layouts/ui-layout-center/content' } ) %>
       <%= render( { :partial => 'layouts/ui-layout-center/footer' } ) %>
     </div>
   <%- if ( user_signed_in? ) -%>
-    <div class="ui-layout-east">
-      East
+    <div class="ui-layout-east" style="display:none;">
+      <%= render( { :partial => 'layouts/ui-layout-east/right_bar' } ) %>
     </div>
-    <div class="ui-layout-south">
+    <div class="ui-layout-south" style="display:none;">
       <%= render( { :partial => 'layouts/ui-layout-south/task_bar' } ) %>
     </div>
   <%- end -%>
@@ -65,7 +65,10 @@
       
       $.getScript( jQueryLayoutUrl, function( data, textStatus ) {
         var bodyLayoutOptions = {
-          
+          contentSelector : '.content',
+          north__spacing_open : 0,
+          togglerContent_open : '<span class="ui-icon"></span>',
+          togglerContent_closed : '<span class="ui-icon"></span>'
         };
         bodyLayout = $( 'body' ).layout( bodyLayoutOptions );
         bodyLayout.allowOverflow( 'north' ); // Needed for the menus.
