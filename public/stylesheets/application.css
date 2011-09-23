@@ -1,0 +1,74 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Lucida Grande", Tahoma, Verdana, Arial, Sans-serif;
+	font-size: 11px;
+	color: #333333;
+	overflow: auto; /* Used by jQuery Layout when the page gets too small. */
+}
+
+/* HTML5 Support for IE */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+	display: block;
+}
+
+a {
+	color: #1122CC; /* Or #3B5998 */
+	text-decoration: none;
+}
+
+a:hover {
+	color: #1122CC; /* Or #3B5998 */
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #1122CC; /* Or #3B5998 */
+}
+
+img {
+	vertical-align: middle;
+}
+
+/********** Start of the CSS to modify the jQuery UI CSS **********/
+/**************** Start of the CSS for the Layouts ****************/
+.ui-layout-north, .ui-layout-west, .ui-layout-center,
+.ui-layout-east, .ui-layout-south {
+	display: none;
+}
+
+.ui-layout-resizer {
+	background: #F5F5F5; /* Or #EEEEEE */
+}
+
+.ui-layout-resizer-hover {
+	background: #F0F0F0;
+}
+
+.ui-layout-toggler {
+	background: #E5E5E5; /* Or #AAAAAA */
+}
+
+.ui-layout-toggler-hover {
+	background: #D5D5D5;
+}
+/**************** End of the CSS for the Layouts ****************/
+
+/************ Start of the CSS for the Flash messages ************/
+.ui-flash {
+	
+}
+
+.ui-flash p {
+	margin: 1em 0px;
+}
+/************* End of the CSS for the Flash messages *************/
+/********** End of the CSS to modify the jQuery UI CSS **********/
