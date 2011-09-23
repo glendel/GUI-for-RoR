@@ -1,6 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.devise_for :users
   map.resources :users
+  map.resources :roles
+  map.resources :menus
+  map.resources :menu_items
 
   # The priority is based upon order of creation: first created -> highest priority.
 
