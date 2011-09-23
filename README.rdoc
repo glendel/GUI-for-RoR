@@ -2,6 +2,8 @@
 
 Practical and easy to use GUI made with jQuery UI for Ruby on Rails.
 
+Status : Working on !
+
 == Used Tools
 
 * {Ruby 1.8.7}[http://www.ruby-lang.org/] + {Rails 2.3.12}[http://rubyonrails.org/]
@@ -60,6 +62,7 @@ Now we are going to load into the database some seeds with values by default nee
 
 * {Episode 238 - Unobtrusive Javascript}[http://railscasts.com/episodes/205-unobtrusive-javascript]
 * {Episode 201 - Bundler}[http://railscasts.com/episodes/201-bundler]
+* {Episode 104 - Exception Notifications}[http://railscasts.com/episodes/104-exception-notifications]
 * {Episode 209 - Introducing Devise}[http://railscasts.com/episodes/209-introducing-devise]
 * {Episode 210 - Customizing Devise}[http://railscasts.com/episodes/210-customizing-devise]
 * {Episode 192 - Authorization with CanCan}[http://railscasts.com/episodes/192-authorization-with-cancan]
