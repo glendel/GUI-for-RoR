@@ -2,10 +2,16 @@ class MenuItemsController < ApplicationController
   # GET /menu_items
   # GET /menu_items.xml
   def index
+    list
+  end
+  
+  # GET /menu_items
+  # GET /menu_items.xml
+  def list
     @menu_items = MenuItem.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render( { :action => 'list' } ) }# list.html.erb
       format.xml  { render :xml => @menu_items }
     end
   end
