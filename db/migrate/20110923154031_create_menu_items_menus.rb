@@ -10,14 +10,14 @@ class CreateMenuItemsMenus < ActiveRecord::Migration
       t.timestamps
     end
     
+    add_index :menu_items_menus, :foreign_table_id
+    
     # Add the foreign keys
     execute <<-SQL
       SET FOREIGN_KEY_CHECKS = 0;
     SQL
     execute <<-SQL
       ALTER TABLE `menu_items_menus`
-        ADD CONSTRAINT `index_menu_items_menus_on_foreign_table_id`
-        KEY ( `foreign_table_id` ),
         ADD CONSTRAINT `fk_menu_items_menus_on_menu_item_id`
         FOREIGN KEY ( `menu_item_id` )
         REFERENCES `menu_items`( `id` ),
