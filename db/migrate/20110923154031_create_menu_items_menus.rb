@@ -3,7 +3,7 @@ class CreateMenuItemsMenus < ActiveRecord::Migration
     create_table( :menu_items_menus, :id => false, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8' ) do |t|
       t.column :foreign_table_id, :int, :null => false
       t.references :menu_item
-      t.column :foreign_table_type, :string, :limit => 10, :null => false, :default => 'menu', :comment => 'Just supported menu or menu_item as foreign tables'
+      t.column :foreign_table_type, :string, :limit => 10, :null => false, :default => 'menu', :comment => 'Just supported Menu or MenuItem as foreign tables'
       t.column :created_by, :int, :null => false
       t.column :updated_by, :int, :null => false
 
