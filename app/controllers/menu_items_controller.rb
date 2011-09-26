@@ -1,4 +1,6 @@
 class MenuItemsController < ApplicationController
+  load_and_authorize_resource
+  
   # GET /menu_items
   # GET /menu_items.xml
   def index
