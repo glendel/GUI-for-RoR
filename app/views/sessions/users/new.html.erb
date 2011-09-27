@@ -1,17 +1,38 @@
-<h2>Sign in</h2>
-
-<% form_for resource_name, resource, :url => session_path(resource_name) do |f| -%>
-  <p><%= f.label :email %></p>
-  <p><%= f.text_field :email %></p>
-
-  <p><%= f.label :password %></p>
-  <p><%= f.password_field :password %></p>
-
-  <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+<%-
+  content_for( :title ) do
+-%>
+    <%= t( 'devise.sessions.link' ) %>
+<%-
+  end
+-%>
+<div id="sign_in_div" title="<%= t( 'devise.sessions.link' ) %>">
+  <h2><%= t( 'devise.sessions.link' ) %></h2>
+  <%- form_for( resource_name, resource, { :url => session_path( resource_name ), :html => { :id => 'sign_in_form' } } ) do |f| -%>
+    <p><%= f.label :email %></p>
+    <p><%= f.text_field :email %></p>
+    
+    <p><%= f.label :password %></p>
+    <p><%= f.password_field :password %></p>
+    
+    <%- if ( devise_mapping.rememberable? ) -%>
+      <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+    <%- end -%>
   <% end -%>
-
-  <p><%= f.submit "Sign in" %></p>
-<% end -%>
-
-<%= render :partial => "shared/devise_links" %>
+</div>
+<%-
+  content_for( :document_ready_ui ) do
+-%>
+    $( '#sign_in_div' ).dialog( {
+      modal : true,
+      resizable : false,
+      draggable : false,
+      closeOnEscape : false,
+      create : function( event, ui ) { $( '.ui-dialog-titlebar-close' ).hide(); },
+      buttons : {
+        '<%= t( 'devise.sessions.link' ) %>' : function() { $( '#sign_in_form' ).submit(); },
+	'<%= t( 'devise.passwords.link' ) %>' : function() { window.location.href = '<%= new_password_path( resource_name ) %>'; }
+      }
+    } );
+<%-
+  end
+-%>
