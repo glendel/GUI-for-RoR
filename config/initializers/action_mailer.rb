@@ -5,4 +5,4 @@ CONFIG['action_mailer']['smtp_settings']['authentication'] = CONFIG['action_mail
 ActionMailer::Base.raise_delivery_errors = CONFIG['action_mailer']['raise_delivery_errors']
 ActionMailer::Base.delivery_method = CONFIG['action_mailer']['delivery_method']
 ActionMailer::Base.smtp_settings = CONFIG['action_mailer']['smtp_settings']
-ActionMailer::Base.default_url_options = CONFIG['action_mailer']['default_url_options']
+ActionMailer::Base.default_url_options = CONFIG['action_mailer']['default_url_options'].symbolize_keys
