@@ -43,7 +43,9 @@ class ApplicationController < ActionController::Base
         if ( controller_name == 'registrations' )
           authorize! action_name.to_sym, current_user
         elsif ( controller_name == 'passwords' )
-          authorize! action_name.to_sym, current_user
+          unless ( action_name == 'new' || request.post? )
+	    authorize! action_name.to_sym, current_user
+	  end
         end
       end
     end
@@ -55,6 +57,10 @@ class ApplicationController < ActionController::Base
       if ( devise_controller? )
         if ( controller_name == 'sessions' )
           return( false )
+        elsif ( controller_name == 'passwords' )
+          if ( action_name == 'new' || request.post? )
+	    return( false )
+	  end
         end
       end
       
