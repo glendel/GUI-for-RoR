@@ -74,6 +74,8 @@
         bodyLayout.allowOverflow( 'north' ); // Needed for the menus.
       });
       
+      $( 'input:text, input:password' ).addClass( 'ui-widget-content' );
+      
       <%= yield( :document_ready_ui ) %>
     });
     
