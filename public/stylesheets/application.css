@@ -11,6 +11,7 @@ html, body {
 	height: 100%;
 	font-family: "Lucida Grande", Tahoma, Verdana, Arial, Sans-serif;
 	font-size: 11px;
+	line-height: 1.28;
 	color: #333333;
 	overflow: auto; /* Used by jQuery Layout when the page gets too small. */
 }
@@ -34,8 +35,20 @@ a:visited {
 	color: #1122CC; /* Or #3B5998 */
 }
 
+p {
+	margin-top: 3px;
+}
+
+ul {
+	padding-left: 40px;
+}
+
 img {
 	vertical-align: middle;
+}
+
+input[type=text], input[type=password] {
+	padding: 1px 3px 3px 3px;
 }
 
 /********** Start of the CSS to modify the jQuery UI CSS **********/
@@ -72,3 +85,41 @@ img {
 }
 /************* End of the CSS for the Flash messages *************/
 /********** End of the CSS to modify the jQuery UI CSS **********/
+
+/**** Start of the CSS for to handle the Error Explanations on Rails ****/
+#errorExplanation {
+	border: 2px solid red;
+	padding: 7px;
+	margin-top: 3px;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+	background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+	text-align: left;
+	font-weight: bold;
+	padding: 5px 5px 5px 15px;
+	font-size: 12px;
+	margin: -7px;
+	background-color: #c00;
+	color: #fff;
+}
+
+#errorExplanation p {
+	color: #333;
+	margin-bottom: 0;
+	padding: 12px 5px 5px 5px;
+}
+
+#errorExplanation ul li {
+	font-size: 12px;
+	list-style: square;
+}
+
+.fieldWithErrors {
+	padding: 2px;
+	background-color: red;
+	display: table;
+}
+/**** End of the CSS for to handle the Error Explanations on Rails ****/
