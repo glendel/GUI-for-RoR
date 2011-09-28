@@ -73,6 +73,36 @@ input[type=text], input[type=password] {
 .ui-layout-toggler-hover {
 	background: #D5D5D5;
 }
+
+.ui-layout-toggler-north .ui-icon,
+.ui-layout-toggler-south .ui-icon {
+	margin: -5px auto; /* Tweak arrow vertical-center */
+}
+
+.ui-layout-toggler-west .ui-icon,
+.ui-layout-toggler-east .ui-icon {
+	margin-left: -5px; /* Tweak arrow horizontal-center */
+}
+
+.ui-layout-toggler-north-open .ui-icon,
+.ui-layout-toggler-south-closed .ui-icon {
+	background-position: 0 -16px; /* ui-icon-triangle-1-n */
+}
+
+.ui-layout-toggler-north-closed .ui-icon,
+.ui-layout-toggler-south-open .ui-icon {
+	background-position: -67px -16px; /* ui-icon-triangle-1-s */
+}
+
+.ui-layout-toggler-west-open .ui-icon,
+.ui-layout-toggler-east-closed .ui-icon {
+	background-position: -96px -16px; /* ui-icon-triangle-1-w */
+}
+
+.ui-layout-toggler-west-closed .ui-icon,
+.ui-layout-toggler-east-open .ui-icon {
+	background-position: -33px -16px; /* ui-icon-triangle-1-e */
+}
 /**************** End of the CSS for the Layouts ****************/
 
 /************ Start of the CSS for the Flash messages ************/
@@ -122,4 +152,48 @@ input[type=text], input[type=password] {
 	background-color: red;
 	display: table;
 }
-/**** End of the CSS for to handle the Error Explanations on Rails ****/
+/***** End of the CSS for to handle the Error Explanations on Rails *****/
+
+/**** Start of the CSS for the Menu Bar ****/
+#menu_bar {
+	
+}
+
+#menu_bar > span.left {
+	
+}
+
+#menu_bar > span.right {
+	position: absolute;
+	top: 0;
+	right: 2px;
+}
+/***** End of the CSS for the Menu Bar *****/
+
+/**** Start of the CSS for the Right Bar ****/
+#right_bar {
+	
+}
+/***** End of the CSS for the Right Bar *****/
+
+/**** Start of the CSS for the Left Bar ****/
+#left_bar {
+	
+}
+/***** End of the CSS for the Left Bar *****/
+
+/**** Start of the CSS for the Task Bar ****/
+#task_bar {
+	
+}
+
+#task_bar > span.left {
+	
+}
+
+#task_bar > span.right {
+	position: absolute;
+	top: 0;
+	right: 2px;
+}
+/***** End of the CSS for the Task Bar *****/
