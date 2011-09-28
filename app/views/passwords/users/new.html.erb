@@ -17,6 +17,10 @@
 <%-
   content_for( :document_ready_ui ) do
 -%>
+    $( '#reset_password_form' ).bind( 'keydown', {}, function( eventObject ) {
+      if ( eventObject.keyCode == 13 ) { this.submit(); }
+    });
+    
     $( '#reset_password_div' ).dialog( {
       width : 350,
       modal : true,
