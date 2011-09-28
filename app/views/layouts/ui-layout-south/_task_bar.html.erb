@@ -1,1 +1,11 @@
-Task Bar
+<%-
+  task_bar_class = ( params[:use_default].to_s == 'true' ) ? 'ui-state-default' : 'ui-widget-header'
+-%>
+<footer id="task_bar" class="<%= task_bar_class %>">
+  <span class="left">
+    Here we can have a taskbar like the menu bar above.
+  </span>
+  <span class="right">
+    Right
+  </span>
+</footer>
