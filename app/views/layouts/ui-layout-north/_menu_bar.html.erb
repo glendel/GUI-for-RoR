@@ -1,1 +1,73 @@
-Menu Bar
+<%-
+  menus = Menu.find( :all )
+  menu_bar_class = ( params[:use_default].to_s == 'true' ) ? 'ui-state-default' : 'ui-widget-header'
+-%>
+<nav id="menu_bar" class="<%= menu_bar_class %>" tabindex="0">
+  <span class="left">
+  <%- if ( menus.blank? ) -%>
+    <button id="menuBlank">.</button>
+  <%-
+    else
+      for menu in menus
+  -%>
+    <button id="menu<%= menu.id %>"></button>
+  <%-
+      end
+    end
+  -%>
+  </span>
+  <span class="right">
+  <%- if ( user_signed_in? ) -%>
+    <button id="menuProfile">Profile</button>
+    <button id="menuSignOut">Sign Out</button>
+  <%- end -%>
+  </span>
+</nav>
+<div id="menu_items"></div>
+<%-
+  content_for( :document_ready_ui ) do
+    if ( menus.blank? )
+-%>
+  $( '#menuBlank' ).button( {
+    label : '.'
+  } ).css( { visibility : 'hidden' } );
+<%-
+    else
+      for menu in menus
+        has_menu_items = ( menu.menu_items.count( 'id' ) > 0 )
+-%>
+  $( '#menu<%= menu.id %>' ).button( {
+    label : '<%= menu.name %>',
+    icons : {
+    <%- if ( has_menu_items ) -%>
+      secondary : 'ui-icon-triangle-1-s'
+    <%- end -%>
+    }
+  } ).bind( 'mousedown', {
+    id : <%= menu.id %>,
+    url : '<%= menu_items_path( { :menu_id => menu.id } ) if ( has_menu_items ) %>',
+    hasMenuItems : <%= has_menu_items %>
+  }, menuMouseDownHandler );
+<%-
+      end
+    end
+    
+    if ( user_signed_in? )
+-%>
+  $( '#menuProfile' ).button( {
+    label : 'Profile'
+  } ).bind( 'mousedown', {
+    url : '<%= edit_user_path( current_user ) %>',
+    hasMenuItems : false
+  }, menuMouseDownHandler );
+  $( '#menuSignOut' ).button( {
+    label : 'Sign Out'
+  } ).bind( 'mousedown', {
+    url : '<%= destroy_user_session_path %>',
+    hasMenuItems : false,
+    actAsLink : true
+  }, menuMouseDownHandler );
+<%-
+    end
+  end
+-%>
