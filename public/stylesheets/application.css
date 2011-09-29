@@ -156,7 +156,7 @@ input[type=text], input[type=password] {
 
 /**** Start of the CSS for the Menu Bar ****/
 #menu_bar {
-	
+	padding: 0.2em;
 }
 
 #menu_bar > span.left {
@@ -166,7 +166,10 @@ input[type=text], input[type=password] {
 #menu_bar > span.right {
 	position: absolute;
 	top: 0;
-	right: 2px;
+	right: 0;
+	padding: 0.2em;
+	margin-top: 1px;
+	height: 100%;
 }
 /***** End of the CSS for the Menu Bar *****/
 
