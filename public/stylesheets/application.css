@@ -116,7 +116,7 @@ input[type=text], input[type=password] {
 /************* End of the CSS for the Flash messages *************/
 /********** End of the CSS to modify the jQuery UI CSS **********/
 
-/**** Start of the CSS for to handle the Error Explanations on Rails ****/
+/**** Start of the CSS for the Error Explanations on Rails ****/
 #errorExplanation {
 	border: 2px solid red;
 	padding: 7px;
@@ -152,7 +152,7 @@ input[type=text], input[type=password] {
 	background-color: red;
 	display: table;
 }
-/***** End of the CSS for to handle the Error Explanations on Rails *****/
+/***** End of the CSS for the Error Explanations on Rails *****/
 
 /**** Start of the CSS for the Menu Bar ****/
 #menu_bar {
@@ -171,19 +171,49 @@ input[type=text], input[type=password] {
 	margin-top: 1px;
 	height: 100%;
 }
-/***** End of the CSS for the Menu Bar *****/
 
-/**** Start of the CSS for the Right Bar ****/
-#right_bar {
+/**** Start of the CSS for the Menu Items ****/
+#menu_items {
 	
 }
-/***** End of the CSS for the Right Bar *****/
+
+#menu_items > ul {
+	
+}
+/***** End of the CSS for the Menu Items *****/
+/***** End of the CSS for the Menu Bar *****/
 
 /**** Start of the CSS for the Left Bar ****/
 #left_bar {
 	
 }
 /***** End of the CSS for the Left Bar *****/
+
+/**** Start of the CSS for the workspace ****/
+/**** Start of the CSS for the workspace header ****/
+#header {
+	text-align: center;
+}
+/***** End of the CSS for the workspace header *****/
+
+/**** Start of the CSS for the workspace content ****/
+#content {
+	
+}
+/***** End of the CSS for the workspace content *****/
+
+/**** Start of the CSS for the workspace footer ****/
+#footer {
+	text-align: center;
+}
+/***** End of the CSS for the workspace footer *****/
+/***** End of the CSS for the workspace *****/
+
+/**** Start of the CSS for the Right Bar ****/
+#right_bar {
+	
+}
+/***** End of the CSS for the Right Bar *****/
 
 /**** Start of the CSS for the Task Bar ****/
 #task_bar {
