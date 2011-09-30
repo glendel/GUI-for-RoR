@@ -23,7 +23,7 @@
   <%- end -%>
   </span>
 </nav>
-<div id="menu_items"></div>
+<div id="menu_items" class="menu_items"></div>
 <%-
   content_for( :document_ready_ui ) do
     if ( menus.blank? )
@@ -47,7 +47,7 @@
     id : <%= menu.id %>,
     url : '<%= menu_items_path( { :menu_id => menu.id } ) if ( has_menu_items ) %>',
     hasMenuItems : <%= has_menu_items %>
-  }, menuMouseDownHandler );
+  }, menuButtonMouseDownHandler );
 <%-
       end
     end
@@ -59,14 +59,14 @@
   } ).bind( 'mousedown', {
     url : '<%= edit_user_path( current_user ) %>',
     hasMenuItems : false
-  }, menuMouseDownHandler );
+  }, buttonMouseDownHandler );
   $( '#menuSignOut' ).button( {
     label : 'Sign Out'
   } ).bind( 'mousedown', {
     url : '<%= destroy_user_session_path %>',
     hasMenuItems : false,
     actAsLink : true
-  }, menuMouseDownHandler );
+  }, buttonMouseDownHandler );
 <%-
     end
   end
