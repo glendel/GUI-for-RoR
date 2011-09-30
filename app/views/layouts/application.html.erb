@@ -31,10 +31,8 @@
       <%= render( { :partial => 'layouts/ui-layout-west/left_bar' } ) %>
     </div>
   <%- end -%>
-    <div id="global-content" class="ui-layout-center" style="display:none;">
-      <%= render( { :partial => 'layouts/ui-layout-center/header' } ) %>
-      <%= render( { :partial => 'layouts/ui-layout-center/content' } ) %>
-      <%= render( { :partial => 'layouts/ui-layout-center/footer' } ) %>
+    <div class="ui-layout-center" style="display:none;">
+      <%= render( { :partial => 'layouts/ui-layout-center/workspace' } ) %>
     </div>
   <%- if ( user_signed_in? ) -%>
     <div class="ui-layout-east" style="display:none;">
