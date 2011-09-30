@@ -1,16 +1,15 @@
-<h1>Listing users</h1>
+<h2>Listing users</h2>
 
 <table>
   <tr>
     <th>Username</th>
     <th>Email</th>
-    <th>Email confirmation</th>
+    <th colspan="3">&nbsp;</th>
   </tr>
-
 <% @users.each do |user| %>
   <tr>
-    <td><%=h user.username %></td>
-    <td><%=h user.email %></td>
+    <td><%= h user.username %></td>
+    <td><%= h user.email %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -19,5 +18,16 @@
 </table>
 
 <br />
-
+<%= content_tag( :button, 'New User', { :id => 'new_user' } ) %>
 <%= link_to 'New user', new_user_path %>
+<%-
+  content_for( :document_ready_ui ) do
+-%>
+  $( '#new_user' ).button( {
+    label : 'New User'
+  } ).bind( 'mousedown', {
+    url : '<%= new_user_path %>'
+  }, buttonMouseDownHandler );
+<%-
+  end
+-%>
