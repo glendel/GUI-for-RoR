@@ -3,12 +3,26 @@
 
 // Function to handle the mousedown event on the buttons.
 function buttonMouseDownHandler( eventObject ) {
-  if ( eventObject.data.actAsLink ) {
-    window.location.href = eventObject.data.url;
-  } else if ( eventObject.data.isADialog ) {
-    
-  } else {
-    
+  if ( typeof( eventObject.data.callback ) === 'function' ) {
+    eventObject.data.callback( eventObject );
+  } else if ( typeof( eventObject.data.url ) === 'string' ) {
+    if ( eventObject.data.isAJAX ) {
+      jQuery.get( eventObject.data.url, eventObject.data.data, function( data, textStatus, jqXHR ) {
+        jQuery( '#content' ).html( data );
+      } );
+    } else if ( eventObject.data.isADialog ) {
+      var dialog = jQuery( '#dialog' );
+      
+      if ( dialog.length < 1 ) {
+        dialog = jQuery( '<div id="dialog" style="display:none;"></div>' );
+      }
+      
+      dialog.load( eventObject.data.url, eventObject.data.data, function( responseText, textStatus, XMLHttpRequest ) {
+        dialog.dialog();
+      } );
+    } else { // eventObject.data.actAsLink
+      window.location.href = eventObject.data.url;
+    }
   }
 }
 
