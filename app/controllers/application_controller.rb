@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   
+  # This line invokes the "set_layout" method to choose the right layout according to each situation.
+  layout :set_layout
+  
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
   filter_parameter_logging :password, :password_confirmation
@@ -26,15 +29,6 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied, :with => :rescue_from_cancan
   
   protected
-    #----------------------------------------------------------------------------------------------------
-    # current_ability
-    # 
-    # This method is to override the original one used by "CanCan" to create and return the current_user's ability.
-    #----------------------------------------------------------------------------------------------------
-    def current_ability
-      @current_ability ||= UserAbility.new( current_user )
-    end
-    
     #----------------------------------------------------------------------------------------------------
     # load_and_set_settings
     #----------------------------------------------------------------------------------------------------
@@ -48,6 +42,15 @@ class ApplicationController < ActionController::Base
 	  end
         end
       end
+    end
+    
+    #----------------------------------------------------------------------------------------------------
+    # current_ability
+    # 
+    # This method is to override the original one used by "CanCan" to create and return the current_user's ability.
+    #----------------------------------------------------------------------------------------------------
+    def current_ability
+      @current_ability ||= UserAbility.new( current_user )
     end
     
     #----------------------------------------------------------------------------------------------------
@@ -65,6 +68,13 @@ class ApplicationController < ActionController::Base
       end
       
       return( true )
+    end
+    
+    #----------------------------------------------------------------------------------------------------
+    # set_layout
+    #----------------------------------------------------------------------------------------------------
+    def set_layout
+      return( ( request.xhr? ) ? nil : :application )
     end
     
     #----------------------------------------------------------------------------------------------------
