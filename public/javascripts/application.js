@@ -7,7 +7,7 @@ function buttonMouseDownHandler( eventObject ) {
     eventObject.data.callback( eventObject );
   } else if ( typeof( eventObject.data.url ) === 'string' ) {
     if ( eventObject.data.isAJAX ) {
-      jQuery.get( eventObject.data.url, eventObject.data.data, function( data, textStatus, jqXHR ) {
+      jQuery.get( eventObject.data.url, jQuery.extend( { isAJAX : true }, eventObject.data.data ), function( data, textStatus, jqXHR ) {
         jQuery( '#content' ).html( data );
       } );
     } else if ( eventObject.data.isADialog ) {
@@ -17,8 +17,8 @@ function buttonMouseDownHandler( eventObject ) {
         dialog = jQuery( '<div id="dialog" style="display:none;"></div>' );
       }
       
-      dialog.load( eventObject.data.url, eventObject.data.data, function( responseText, textStatus, XMLHttpRequest ) {
-        dialog.dialog();
+      dialog.load( eventObject.data.url, jQuery.extend( { isADialog : true }, eventObject.data.data ), function( responseText, textStatus, XMLHttpRequest ) {
+        dialog.dialog( eventObject.data.options );
       } );
     } else { // eventObject.data.actAsLink
       window.location.href = eventObject.data.url;
