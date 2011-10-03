@@ -3,10 +3,26 @@
 
 // Function to handle the mousedown event on the buttons.
 function buttonMouseDownHandler( eventObject ) {
+  if ( typeof( eventObject.data.url ) !== 'string' ) {
+    var href = this.getAttribute( 'href' );
+    
+    if ( typeof( href ) === 'string' ) {
+      eventObject.data.url = href;
+    } else {
+      throw 'Please submit a valid URL';
+    }
+  }
+  
   if ( typeof( eventObject.data.callback ) === 'function' ) {
     eventObject.data.callback( eventObject );
   } else if ( typeof( eventObject.data.url ) === 'string' ) {
-    var data = jQuery.extend( { isAJAX : eventObject.data.isAJAX, isADialog : eventObject.data.isADialog }, eventObject.data.data );
+    var data = jQuery.extend( { }, eventObject.data.data );
+    
+    if ( eventObject.data.isAJAX === true ) {
+      data.isAJAX = true;
+    } else if ( eventObject.data.isADialog === true ) {
+      data.isADialog = true;
+    }
     
     for ( key in eventObject.data.attributes ) {
       data[ key ] = this.getAttribute( eventObject.data.attributes[ key ] );
@@ -56,8 +72,12 @@ function buttonMouseDownHandler( eventObject ) {
         }
       } );
     } else { // eventObject.data.actAsLink
-      var rquery = /\?/;
-      var params = ( rquery.test( eventObject.data.url ) ? '&' : '?' ) + jQuery.param( data, jQuery.ajaxSettings.traditional );
+      var params = '';
+      
+      if ( !jQuery.isEmptyObject( data ) ) {
+        var rquery = /\?/;
+        params = ( rquery.test( eventObject.data.url ) ? '&' : '?' ) + jQuery.param( data, jQuery.ajaxSettings.traditional );
+      }
       
       window.location.href = eventObject.data.url + params;
     }
@@ -72,7 +92,13 @@ function menuButtonMouseDownHandler( eventObject ) {
     if ( menuItems.length > 0 ) {
       
     } else {
-      
+      jQuery.ajax( {
+        url : eventObject.data.url,
+        dataType : 'script',
+        success : function( data, textStatus, jqXHR ) {
+          
+        }
+      } );
     }
   } else {
     buttonMouseDownHandler( eventObject );
