@@ -10,9 +10,9 @@
   <tr>
     <td><%= h user.username %></td>
     <td><%= h user.email %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= content_tag( :button, 'Show User', { :id => "show_user#{user.id}", :href => user_path( user ) } ) %><%= link_to 'Show', user %></td>
+    <td><%= content_tag( :button, 'Edit User', { :id => "edit_user#{user.id}", :href => edit_user_path( user ) } ) %><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= content_tag( :button, 'Destroy User', { :id => "destroy_user#{user.id}", :href => url_for( { :controller => :user, :action => :destroy, :id => user.id } ) } ) %><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
@@ -23,6 +23,35 @@
 <%-
   content_for( :document_ready_ui ) do
 -%>
+  $( 'button[id^="show_user"]' ).button( {
+    text : false,
+    icons : {
+      primary : 'ui-icon-plusthick'
+    }
+  } ).bind( 'mousedown', {
+    isADialog : true,
+    options : {
+      modal : true
+    }
+  }, buttonMouseDownHandler );
+  $( 'button[id^="edit_user"]' ).button( {
+    text : false,
+    icons : {
+      primary : 'ui-icon-pencil'
+    }
+  } ).bind( 'mousedown', {
+    
+  }, buttonMouseDownHandler );
+  $( 'button[id^="destroy_user"]' ).button( {
+    text : false,
+    icons : {
+      primary : 'ui-icon-trash'
+    }
+  } ).bind( 'mousedown', {
+    data : {
+      _method : 'delete'
+    }
+  }, buttonMouseDownHandler );
   $( '#new_user' ).button( {
     label : 'New User'
   } ).bind( 'mousedown', {
