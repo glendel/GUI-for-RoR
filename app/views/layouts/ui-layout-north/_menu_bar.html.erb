@@ -57,15 +57,13 @@
   $( '#menuProfile' ).button( {
     label : 'Profile'
   } ).bind( 'mousedown', {
-    url : '<%= edit_user_path( current_user ) %>',
-    hasMenuItems : false
+    url : '<%= edit_user_registration_path %>',
+    isAJAX : true
   }, buttonMouseDownHandler );
   $( '#menuSignOut' ).button( {
     label : 'Sign Out'
   } ).bind( 'mousedown', {
-    url : '<%= destroy_user_session_path %>',
-    hasMenuItems : false,
-    actAsLink : true
+    url : '<%= destroy_user_session_path %>'
   }, buttonMouseDownHandler );
 <%-
     end
