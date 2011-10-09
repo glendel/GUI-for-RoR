@@ -1,5 +1,8 @@
 # http://en.wikipedia.org/wiki/YAML
 default: &common
+  # Settings to configure the application details.
+  app:
+    name: My Application Name
   # Settings to configure Action Mailer.
   action_mailer:
     raise_delivery_errors: true
