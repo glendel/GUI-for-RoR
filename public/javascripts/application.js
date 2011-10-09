@@ -1,6 +1,11 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+// Function to apply additional styles to the application after it is already loaded.
+function applyAdditionalStyles() {
+  jQuery( 'input:text, input:password' ).addClass( 'ui-widget-content' );
+}
+
 // Function to handle the mousedown event on the buttons.
 function buttonMouseDownHandler( eventObject ) {
   if ( typeof( eventObject.data.url ) !== 'string' ) {
@@ -9,12 +14,14 @@ function buttonMouseDownHandler( eventObject ) {
     if ( typeof( href ) === 'string' ) {
       eventObject.data.url = href;
     } else {
-      throw 'Please submit a valid URL';
+      throw 'Please declare a valid URL or add an "href" attribute to the object.';
     }
   }
   
   if ( typeof( eventObject.data.callback ) === 'function' ) {
     eventObject.data.callback( eventObject );
+  } else if ( eventObject.data.hasMenuItems ) {
+    menuButtonMouseDownHandler( eventObject );
   } else if ( typeof( eventObject.data.url ) === 'string' ) {
     var data = jQuery.extend( { }, eventObject.data.data );
     
@@ -53,6 +60,7 @@ function buttonMouseDownHandler( eventObject ) {
               }
             }
           }
+	  applyAdditionalStyles();
         },
         error : function( jqXHR, textStatus, errorThrown ) {
           if ( typeof( eventObject.data.error ) === 'function' ) {
@@ -69,6 +77,7 @@ function buttonMouseDownHandler( eventObject ) {
               resizable : false
             } );
           }
+	  applyAdditionalStyles();
         }
       } );
     } else { // eventObject.data.actAsLink
