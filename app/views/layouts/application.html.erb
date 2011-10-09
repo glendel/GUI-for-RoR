@@ -9,7 +9,7 @@
     <!--[if IE]>
       <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title><%= yield( :title ) %></title>
+    <title><%= ( CONFIG['app']['name'].blank? ) ? yield( :title ) : "#{CONFIG['app']['name']} | #{yield( :title )}" %></title>
     <%= csrf_meta_tag %>
     <link id="themes_lnk" rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" />
     <%= stylesheet_link_tag( 'application' ) %>
@@ -72,9 +72,9 @@
         bodyLayout.allowOverflow( 'north' ); // Needed for the menus.
       });
       
-      $( 'input:text, input:password' ).addClass( 'ui-widget-content' );
-      
       <%= yield( :document_ready_ui ) %>
+      
+      applyAdditionalStyles();
     });
     
     <%= yield( :document_ready ) %>
