@@ -4,6 +4,15 @@ Practical and easy to use GUI made with jQuery UI for Ruby on Rails.
 
 Status : Working on !
 
+== Features Out Of The Box
+
+* Authentication.
+* Authorization.
+* Users Management.
+* Roles Management.
+* Menus Management.
+* Menu Items Management.
+
 == Used Tools
 
 * {Ruby 1.8.7}[http://www.ruby-lang.org/] + {Rails 2.3.12}[http://rubyonrails.org/]
@@ -67,6 +76,9 @@ Now we are going to load into the database some seeds with values by default nee
 * {Episode 210 - Customizing Devise}[http://railscasts.com/episodes/210-customizing-devise]
 * {Episode 192 - Authorization with CanCan}[http://railscasts.com/episodes/192-authorization-with-cancan]
 * {Episode 179 - Seed Data}[http://railscasts.com/episodes/179-seed-data]
+* {Episode 30 - Pretty Page Title}[http://railscasts.com/episodes/30-pretty-page-title]
+* {Episode 136 - jQuery}[http://railscasts.com/episodes/136-jquery]
+* {Episode 205 - Unobtrusive JavaScript}[http://railscasts.com/episodes/205-unobtrusive-javascript]
 
 == Reference Articles
 
