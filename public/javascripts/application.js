@@ -6,6 +6,25 @@ function applyAdditionalStyles() {
   jQuery( 'input:text, input:password' ).addClass( 'ui-widget-content' );
 }
 
+// Function to handle the errors throw by the AJAX requests.
+function ajaxErrorHandler( data ) {
+  if ( typeof( data.error ) === 'function' ) {
+    data.error( data.jqXHR, data.textStatus, data.errorThrown );
+  } else {
+    var dialog = jQuery( '#dialog' );
+    
+    if ( dialog.length < 1 ) {
+      dialog = jQuery( '<div id="dialog" style="display:none;"></div>' );
+    }
+    
+    dialog.html( data.errorThrown ).dialog( {
+      title : 'Error',
+      resizable : false
+    } );
+  }
+  applyAdditionalStyles();
+}
+
 // Function to handle the mousedown event on the buttons.
 function buttonMouseDownHandler( eventObject ) {
   if ( typeof( eventObject.data.url ) !== 'string' ) {
@@ -23,7 +42,7 @@ function buttonMouseDownHandler( eventObject ) {
   } else if ( eventObject.data.hasMenuItems ) {
     menuButtonMouseDownHandler( eventObject );
   } else if ( typeof( eventObject.data.url ) === 'string' ) {
-    var data = jQuery.extend( { }, eventObject.data.data );
+    var data = jQuery.extend( true, { }, eventObject.data.data );
     
     if ( eventObject.data.isAJAX === true ) {
       data.isAJAX = true;
@@ -63,21 +82,13 @@ function buttonMouseDownHandler( eventObject ) {
 	  applyAdditionalStyles();
         },
         error : function( jqXHR, textStatus, errorThrown ) {
-          if ( typeof( eventObject.data.error ) === 'function' ) {
-            eventObject.data.error( jqXHR, textStatus, errorThrown );
-          } else {
-            var dialog = jQuery( '#dialog' );
-            
-            if ( dialog.length < 1 ) {
-              dialog = jQuery( '<div id="dialog" style="display:none;"></div>' );
-            }
-            
-            dialog.html( errorThrown ).dialog( {
-              title : 'Error',
-              resizable : false
-            } );
-          }
-	  applyAdditionalStyles();
+          var data = jQuery.extend( true, { }, eventObject.data, {
+            jqXHR : jqXHR,
+            textStatus : textStatus,
+            errorThrown : errorThrown.toString()
+          } );
+          
+          ajaxErrorHandler( data );
         }
       } );
     } else { // eventObject.data.actAsLink
@@ -106,6 +117,15 @@ function menuButtonMouseDownHandler( eventObject ) {
         dataType : 'script',
         success : function( data, textStatus, jqXHR ) {
           
+        },
+        error : function( jqXHR, textStatus, errorThrown ) {
+          var data = jQuery.extend( true, { }, eventObject.data, {
+            jqXHR : jqXHR,
+            textStatus : textStatus,
+            errorThrown : errorThrown.toString()
+          } );
+          
+          ajaxErrorHandler( data );
         }
       } );
     }
