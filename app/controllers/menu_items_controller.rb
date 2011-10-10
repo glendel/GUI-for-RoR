@@ -13,7 +13,8 @@ class MenuItemsController < ApplicationController
     @menu_items = MenuItem.all
 
     respond_to do |format|
-      format.html { render( { :action => 'list' } ) }# list.html.erb
+      format.html { render( :list ) }# list.html.erb
+      format.js { render( :list ) }# list.js.erb
       format.xml  { render :xml => @menu_items }
     end
   end
