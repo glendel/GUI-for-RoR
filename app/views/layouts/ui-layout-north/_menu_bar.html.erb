@@ -45,7 +45,7 @@
     }
   } ).bind( 'mousedown', {
     id : <%= menu.id %>,
-    url : '<%= menu_items_path( { :menu_id => menu.id } ) if ( has_menu_items ) %>',
+    url : '<%= menu.get_url %>',
     hasMenuItems : <%= has_menu_items %>
   }, menuButtonMouseDownHandler );
 <%-
