@@ -2,6 +2,9 @@ class CreateMenus < ActiveRecord::Migration
   def self.up
     create_table( :menus, :options => 'ENGINE=InnoDB DEFAULT CHARSET=utf8' ) do |t|
       t.column :name, :string, :null => false, :default => ''
+      t.column :controller, :string
+      t.column :action, :string
+      t.column :parameters, :string
       t.column :created_by, :int, :null => false
       t.column :updated_by, :int, :null => false
 
