@@ -1,0 +1,32 @@
+<%-
+  if ( params.has_key?( :menu_id ) )
+    unless ( @menu_items.blank? )
+      to_append = "<ul id=\"menu_items_for_menu#{params[:menu_id]}\">"
+      
+      @menu_items.each do |menu_item|
+        to_append += "<li><a href=\"#\">#{menu_item.name}</a></li>"
+      end
+-%>
+  hideMenuItems();
+  jQuery( '#menu_items' ).append( '<%= escape_javascript( to_append ) %>' );
+  jQuery( '#menu_items_for_menu<%= params[:menu_id] %>' ).menu( {
+    menu_id : <%= params[:menu_id] %>,
+    hide : function() {
+      jQuery( '#menu_items_for_menu<%= params[:menu_id] %>' ).hide();
+    },
+    selected : function( eventObject, ui ) {
+      
+    }
+  } ).css( { top : 0, left : 0 } ).position( {
+    my : 'left top',
+    at : 'left bottom',
+    of : jQuery( '#menu<%= params[:menu_id] %>' )
+  } );
+<%-
+    end
+  else
+-%>
+  ajaxErrorHandler( { errorThrown : 'Please submit a valid Menu ID.' } );
+<%-
+  end
+-%>
