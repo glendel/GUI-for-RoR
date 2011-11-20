@@ -10,7 +10,13 @@ class MenuItemsController < ApplicationController
   # GET /menu_items
   # GET /menu_items.xml
   def list
-    @menu_items = MenuItem.all
+    if ( params.has_key?( :menu_id ) )
+      @menu_items = Menu.find( params[:menu_id] ).menu_items
+    elsif ( params.has_key?( :menu_item_id ) )
+      @menu_items = MenuItem.find( params[:menu_item_id] ).menu_items
+    else
+      @menu_items = MenuItem.all
+    end
 
     respond_to do |format|
       format.html { render( :list ) }# list.html.erb
