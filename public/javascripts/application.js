@@ -104,13 +104,23 @@ function buttonMouseDownHandler( eventObject ) {
   }
 }
 
+// Function to hide all the visible menu items.
+function hideMenuItems() {
+  jQuery( '#menu_items > ul:visible' ).menu( 'option' ).hide();
+}
+
 // Function to handle the mousedown event on the menu buttons.
 function menuButtonMouseDownHandler( eventObject ) {
   if ( eventObject.data.hasMenuItems ) {
     var menuItems = jQuery( '#menu_items_for_menu' + eventObject.data.id );
     
     if ( menuItems.length > 0 ) {
-      
+      if ( menuItems.is( ':visible' ) ) {
+        
+      } else {
+        eventObject.stopPropagation();
+        menuItems.show();
+      }
     } else {
       jQuery.ajax( {
         url : eventObject.data.url,
