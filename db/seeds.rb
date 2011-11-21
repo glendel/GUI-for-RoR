@@ -45,6 +45,7 @@ admin_menu = Menu.create!( {
 puts 'Creating the Users Menu Item.'
 users_menu_item = MenuItem.create!( {
   :name => 'Users',
+  :controller => 'users',
   :created_by => admin_user.id,
   :updated_by => admin_user.id
 } )
@@ -53,6 +54,7 @@ users_menu_item = MenuItem.create!( {
 puts 'Creating the Roles Menu Item.'
 roles_menu_item = MenuItem.create!( {
   :name => 'Roles',
+  :controller => 'roles',
   :created_by => admin_user.id,
   :updated_by => admin_user.id
 } )
@@ -61,6 +63,7 @@ roles_menu_item = MenuItem.create!( {
 puts 'Creating the Menus Menu Item.'
 menus_menu_item = MenuItem.create!( {
   :name => 'Menus',
+  :controller => 'menus',
   :created_by => admin_user.id,
   :updated_by => admin_user.id
 } )
@@ -69,6 +72,7 @@ menus_menu_item = MenuItem.create!( {
 puts 'Creating the Menu Items Menu Item.'
 menu_items_menu_item = MenuItem.create!( {
   :name => 'Menu Items',
+  :controller => 'menu_items',
   :created_by => admin_user.id,
   :updated_by => admin_user.id
 } )
