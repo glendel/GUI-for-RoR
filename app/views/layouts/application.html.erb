@@ -78,7 +78,14 @@
     });
     
     <%= yield( :document_ready ) %>
-  });
+  } ).bind( 'mousedown', {}, function( eventObject ) {
+    var jTarget = jQuery( eventObject.target );
+    var isMenuItem = ( jTarget.parents( 'ul.ui-menu' ).length > 0 );
+    
+    if ( !isMenuItem ) { hideMenuItems(); }
+  } ).bind( 'keydown', {}, function( eventObject ) {
+    if ( eventObject.keyCode == 27 ) { hideMenuItems(); }
+  } );
   
   jQuery( window ).load( function( eventObject ) {
     <%= yield( :window_load ) %>
