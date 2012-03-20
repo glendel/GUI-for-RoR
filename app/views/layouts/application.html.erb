@@ -1,3 +1,27 @@
+<%-
+  if ( false )
+    html5_src = 'http://html5shiv.googlecode.com/svn/trunk/html5.js'
+    jquery_ui_href = 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'
+    jquery_src = 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'
+    jquery_rails_src = '/javascripts/jquery/jquery.rails.js'
+    jquery_ui_src = 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'
+    jquery_layout_src = 'http://layout.jquery-dev.net/lib/js/jquery.layout-latest.js'
+  else
+    html5_src = '/javascripts/html5.js'
+    jquery_ui_href = '/stylesheets/jquery/jquery.ui/themes/base/jquery.ui.css'
+    jquery_src = '/javascripts/jquery/jquery.js'
+    jquery_rails_src = '/javascripts/jquery/jquery.rails.js'
+    jquery_ui_src = '/javascripts/jquery/jquery.ui.js'
+    jquery_layout_src = '/javascripts/jquery/jquery.layout.js'
+  end
+  
+  stylesheets_path = File.join( RAILS_ROOT, 'public', 'stylesheets' )
+  stylesheet_for_controller = File.join( stylesheets_path, "#{controller_name}.css" )
+  stylesheet_for_action = File.join( stylesheets_path, controller_name, "#{action_name}.css" )
+  javascripts_path = File.join( RAILS_ROOT, 'public', 'javascripts' )
+  javascript_for_controller = File.join( javascripts_path, "#{controller_name}.js" )
+  javascript_for_action = File.join( javascripts_path, controller_name, "#{action_name}.js" )
+-%>
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
@@ -7,17 +31,12 @@
     <meta name="author" content="Worldwide Systems Services SAS" />
     <meta name="contact" content="contactenos@wssinternational.net" />
     <!--[if IE]>
-      <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script type="text/javascript" src="<%= html5_src %>"></script>
     <![endif]-->
     <title><%= ( CONFIG['app']['name'].blank? ) ? yield( :title ) : "#{CONFIG['app']['name']} | #{yield( :title )}" %></title>
     <%= csrf_meta_tag %>
-    <link id="themes_lnk" rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" />
+    <link id="themes_lnk" rel="stylesheet" type="text/css" href="<%= jquery_ui_href %>" />
     <%= stylesheet_link_tag( 'application' ) %>
-  <%-
-    stylesheets_path = File.join( RAILS_ROOT, 'public', 'stylesheets' )
-    stylesheet_for_controller = File.join( stylesheets_path, "#{controller_name}.css" )
-    stylesheet_for_action = File.join( stylesheets_path, controller_name, "#{action_name}.css" )
-  -%>
     <%= stylesheet_link_tag( "#{controller_name}" ) if ( File.exist?( stylesheet_for_controller ) ) %>
     <%= stylesheet_link_tag( "#{controller_name}/#{action_name}" ) if ( File.exist?( stylesheet_for_action ) ) %>
     <%= yield( :head ) %>
@@ -42,24 +61,19 @@
       <%= render( { :partial => 'layouts/ui-layout-south/task_bar' } ) %>
     </div>
   <%- end -%>
-    <%= javascript_include_tag( 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js' ) %>
-    <%= javascript_include_tag( 'jquery/jquery.rails.js' ) %>
+    <%= javascript_include_tag( jquery_src ) %>
+    <%= javascript_include_tag( jquery_rails_src ) %>
     <%= javascript_include_tag( 'application' ) %>
-  <%-
-    javascripts_path = File.join( RAILS_ROOT, 'public', 'javascripts' )
-    javascript_for_controller = File.join( javascripts_path, "#{controller_name}.js" )
-    javascript_for_action = File.join( javascripts_path, controller_name, "#{action_name}.js" )
-  -%>
     <%= javascript_include_tag( "#{controller_name}" ) if ( File.exist?( javascript_for_controller ) ) %>
     <%= javascript_include_tag( "#{controller_name}/#{action_name}" ) if ( File.exist?( javascript_for_action ) ) %>
     <%= yield( :bottom ) %>
 <script type="text/javascript">
 //<![CDATA[
   jQuery( document ).ready( function( $ ) {
-    var jQueryUiUrl = 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js';
+    var jQueryUiUrl = '<%= jquery_ui_src %>';
     
     $.getScript( jQueryUiUrl, function( data, textStatus ) {
-      var jQueryLayoutUrl = 'http://layout.jquery-dev.net/lib/js/jquery.layout-latest.js';
+      var jQueryLayoutUrl = '<%= jquery_layout_src %>';
       
       $.getScript( jQueryLayoutUrl, function( data, textStatus ) {
         var bodyLayoutOptions = {
