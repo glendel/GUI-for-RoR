@@ -33,7 +33,13 @@
     <!--[if IE]>
       <script type="text/javascript" src="<%= html5_src %>"></script>
     <![endif]-->
-    <title><%= ( CONFIG['app']['name'].blank? ) ? yield( :title ) : "#{CONFIG['app']['name']} | #{yield( :title )}" %></title>
+    <title>
+    <%- if ( CONFIG['app']['name'].blank? ) -%>
+      <%= ( @content_for_title.blank? ) ? 'Unknown Title' : yield( :title ) %>
+    <%- else -%>
+      <%= ( @content_for_title.blank? ) ? CONFIG['app']['name'] : "#{CONFIG['app']['name']} | #{yield( :title )}" %>
+    <%- end -%>
+    </title>
     <%= csrf_meta_tag %>
     <link id="themes_lnk" rel="stylesheet" type="text/css" href="<%= jquery_ui_href %>" />
     <%= stylesheet_link_tag( 'application' ) %>
