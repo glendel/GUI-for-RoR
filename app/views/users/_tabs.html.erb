@@ -1,0 +1,49 @@
+<div id="users_tabs">
+  <ul>
+  <%- if ( defined?( link_to_list ) && !link_to_list.blank? ) -%>
+    <li><%= link_to_list %></li>
+  <%-
+    end
+    
+    if ( defined?( user ) && user.instance_of?( User ) )
+      if ( defined?( link_to_show ) && !link_to_show.blank? )
+  -%>
+    <li><%= link_to_show %></li>
+  <%-
+      end
+      
+      if ( defined?( link_to_edit ) && !link_to_edit.blank? )
+  -%>
+    <li><%= link_to_edit %></li>
+  <%-
+      end
+      
+      if ( defined?( link_to_destroy ) && !link_to_destroy.blank? )
+  -%>
+    <li><%= link_to_destroy %></li>
+  <%-
+      end
+    end
+    
+    if ( defined?( link_to_new ) && !link_to_new.blank? )
+  -%>
+    <li><%= link_to_new %></li>
+  <%- end -%>
+  </ul>
+<%- if ( defined?( initial_tab_id ) && defined?( initial_tab_content ) && !initial_tab_id.blank? && !initial_tab_content.blank? ) -%>
+  <div id="<%= initial_tab_id %>">
+    <%= initial_tab_content %>
+  </div>
+<%- end -%>
+</div>
+<%-
+  content_for( :document_ready_ui ) do
+-%>
+  var usersTabsOptions = {
+    selected : <%= ( defined?( selected ) && selected.to_i > 0 ) ? selected : 0 %>
+  };
+  
+  usersTabsHandler( $, usersTabsOptions );
+<%-
+  end
+-%>

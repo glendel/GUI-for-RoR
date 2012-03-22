@@ -13,7 +13,13 @@ class UsersController < ApplicationController
     @users = User.all
 
     respond_to do |format|
-      format.html { render( { :action => 'list' } ) }# list.html.erb
+      format.html { # list.html.erb
+        if ( request.xhr? )
+          render( { :partial => 'list' } )
+        else
+          render( { :action => 'list' } )
+        end
+      }
       format.xml  { render :xml => @users }
     end
   end
@@ -35,7 +41,13 @@ class UsersController < ApplicationController
     @user = User.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { # new.html.erb
+        if ( request.xhr? )
+          render( { :partial => 'new' } )
+        else
+          render( { :action => 'new' } )
+        end
+      }
       format.xml  { render :xml => @user }
     end
   end

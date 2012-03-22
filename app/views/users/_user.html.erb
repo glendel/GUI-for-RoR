@@ -1,0 +1,7 @@
+<tr>
+  <td><%= h user.username %></td>
+  <td><%= h user.email %></td>
+  <td><%= content_tag( :button, 'Show User', { :id => "show_user#{user.id}", :href => user_path( user ) } ) %><%= link_to 'Show', user %></td>
+  <td><%= content_tag( :button, 'Edit User', { :id => "edit_user#{user.id}", :href => edit_user_path( user ) } ) %><%= link_to 'Edit', edit_user_path(user) %></td>
+  <td><%= content_tag( :button, 'Destroy User', { :id => "destroy_user#{user.id}", :href => url_for( { :controller => :user, :action => :destroy, :id => user.id } ) } ) %><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>
