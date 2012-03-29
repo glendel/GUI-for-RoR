@@ -1,7 +1,43 @@
+<%-
+  if ( !defined?( as_a ) || as_a.blank? )
+    as_a = :show
+  elsif ( !as_a.instance_of?( Symbol ) )
+    as_a = as_a.to_s.strip.to_sym
+  end
+  
+  if ( defined?( user ) && user.instance_of?( User ) )
+    if ( as_a == :row )
+-%>
 <tr>
   <td><%= h user.username %></td>
   <td><%= h user.email %></td>
-  <td><%= content_tag( :button, 'Show User', { :id => "show_user#{user.id}", :href => user_path( user ) } ) %><%= link_to 'Show', user %></td>
-  <td><%= content_tag( :button, 'Edit User', { :id => "edit_user#{user.id}", :href => edit_user_path( user ) } ) %><%= link_to 'Edit', edit_user_path(user) %></td>
-  <td><%= content_tag( :button, 'Destroy User', { :id => "destroy_user#{user.id}", :href => url_for( { :controller => :user, :action => :destroy, :id => user.id } ) } ) %><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+  <td><%= content_tag( :button, 'Show User', { :id => "show_user_#{user.id}", :href => user_path( user.id ) } ) %><%= link_to 'Show', user_path( user.id ) %></td>
+  <td><%= content_tag( :button, 'Edit User', { :id => "edit_user_#{user.id}", :href => edit_user_path( user.id ) } ) %><%= link_to 'Edit', edit_user_path( user.id ) %></td>
+  <td><%= content_tag( :button, 'Delete User', { :id => "delete_user_#{user.id}", :href => delete_user_path( user.id ) } ) %><%= link_to 'Delete', delete_user_path( user.id ) %></td>
 </tr>
+<%- else -%>
+<p>
+  <b>Username:</b>
+  <%= h( user.username ) %>
+</p>
+<p>
+  <b>Email:</b>
+  <%= h( user.email ) %>
+</p>
+<%-
+    end
+  else
+    if ( as_a == :row )
+-%>
+<tr>
+  <td colspan="5">Please provide a valid user.</td>
+</tr>
+<%- else -%>
+<p>
+  <b>Error:</b>
+  Please provide a valid user.
+</p>
+<%-
+    end
+  end
+-%>

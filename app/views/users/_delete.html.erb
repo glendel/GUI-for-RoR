@@ -1,0 +1,2 @@
+Are you sure you would like to delete ?
+<%= content_tag( :button, 'Destroy User', { :id => "destroy_user#{user.id}", :href => url_for( { :controller => :user, :action => :destroy, :id => user.id } ) } ) %><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>

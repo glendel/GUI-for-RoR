@@ -6,9 +6,49 @@
     <th>Email</th>
     <th colspan="3">&nbsp;</th>
   </tr>
-  <%= render( { :partial => 'users/users', :object => @users } ) %>
+  <%= render( { :partial => 'users/users', :object => users } ) %>
 </table>
 
 <br />
 <%= content_tag( :button, 'New User', { :id => 'new_user' } ) %>
 <%= link_to 'New user', new_user_path %>
+<%-
+  content_for( :document_ready_ui ) do
+-%>
+  $( 'button[id^="show_user"]' ).button( {
+    text : false,
+    icons : {
+      primary : 'ui-icon-info'
+    }
+  } ).bind( 'mousedown', {
+    isADialog : true,
+    options : {
+      modal : true
+    }
+  }, buttonMouseDownHandler );
+  $( 'button[id^="edit_user"]' ).button( {
+    text : false,
+    icons : {
+      primary : 'ui-icon-pencil'
+    }
+  } ).bind( 'mousedown', {
+    
+  }, buttonMouseDownHandler );
+  $( 'button[id^="delete_user"]' ).button( {
+    text : false,
+    icons : {
+      primary : 'ui-icon-trash'
+    }
+  } ).bind( 'mousedown', {
+    data : {
+      _method : 'delete'
+    }
+  }, buttonMouseDownHandler );
+  $( '#new_user' ).button( {
+    label : 'New User'
+  } ).bind( 'mousedown', {
+    url : '<%= new_user_path %>'
+  }, buttonMouseDownHandler );
+<%-
+  end
+-%>

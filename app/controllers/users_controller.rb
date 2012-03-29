@@ -13,11 +13,11 @@ class UsersController < ApplicationController
     @users = User.all
 
     respond_to do |format|
-      format.html { # list.html.erb
+      format.html {
         if ( request.xhr? )
-          render( { :partial => 'list' } )
+          render( { :partial => 'list', :locals => { :users => @users } } ) # _list.html.erb
         else
-          render( { :action => 'list' } )
+          render( { :action => 'list' } ) # list.html.erb
         end
       }
       format.xml  { render :xml => @users }
@@ -27,10 +27,16 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
+    @user = User.find( params[:id] )
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {
+        if ( request.xhr? )
+          render( { :partial => 'show', :locals => { :user => @user } } ) # _show.html.erb
+        else
+          render( { :action => 'show' } ) # show.html.erb
+        end
+      }
       format.xml  { render :xml => @user }
     end
   end
@@ -41,11 +47,11 @@ class UsersController < ApplicationController
     @user = User.new
 
     respond_to do |format|
-      format.html { # new.html.erb
+      format.html {
         if ( request.xhr? )
-          render( { :partial => 'new' } )
+          render( { :partial => 'new', :locals => { :user => @user } } ) # _new.html.erb
         else
-          render( { :action => 'new' } )
+          render( { :action => 'new' } ) # new.html.erb
         end
       }
       format.xml  { render :xml => @user }
@@ -54,9 +60,34 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @user = User.find( params[:id] )
+    
+    respond_to do |format|
+      format.html {
+        if ( request.xhr? )
+          render( { :partial => 'edit', :locals => { :user => @user } } ) # _edit.html.erb
+        else
+          render( { :action => 'edit' } ) # edit.html.erb
+        end
+      }
+    end
   end
-
+  
+  # GET /users/1/delete
+  def delete
+    @user = User.find( params[:id] )
+    
+    respond_to do |format|
+      format.html {
+        if ( request.xhr? )
+          render( { :partial => 'delete', :locals => { :user => @user } } ) # _delete.html.erb
+        else
+          render( { :action => 'delete' } ) # delete.html.erb
+        end
+      }
+    end
+  end
+  
   # POST /users
   # POST /users.xml
   def create

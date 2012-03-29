@@ -1,0 +1,14 @@
+<%-
+  set_page_title( 'Deleting User' )
+  locals = {
+    :link_to_list => link_to( 'List', users_path ),
+    :link_to_show => link_to( 'Show', user_path( @user.id ) ),
+    :link_to_edit => link_to( 'Edit', edit_user_path( @user.id ) ),
+    :link_to_delete => link_to( 'Delete', '#delete_user_tab' ),
+    :initial_tab_id => 'delete_user_tab',
+    :initial_tab_content => render( { :partial => 'users/delete', :locals => { :user => @user } } ),
+    :selected => 3,
+    :user => @user
+  }
+-%>
+<%= render( { :partial => 'users/tabs', :locals => locals } ) %>

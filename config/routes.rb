@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.devise_for :users
-  map.resources :users
+  map.resources :users, {
+    :member => { :delete => :get }
+  }
   map.resources :roles
   map.resources :menus
   map.resources :menu_items

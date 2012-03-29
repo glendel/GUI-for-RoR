@@ -1,12 +1,14 @@
-<p>
-  <b>Username:</b>
-  <%=h @user.username %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%-
+  set_page_title( 'User Details' )
+  locals = {
+    :link_to_list => link_to( 'List', users_path ),
+    :link_to_show => link_to( 'Show', '#show_user_tab' ),
+    :link_to_edit => link_to( 'Edit', edit_user_path( @user.id ) ),
+    :link_to_delete => link_to( 'Delete', delete_user_path( @user.id ) ),
+    :initial_tab_id => 'show_user_tab',
+    :initial_tab_content => render( { :partial => 'users/show', :locals => { :user => @user } } ),
+    :selected => 1,
+    :user => @user
+  }
+-%>
+<%= render( { :partial => 'users/tabs', :locals => locals } ) %>
