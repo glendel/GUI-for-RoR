@@ -1,0 +1,42 @@
+<%-
+  if ( !defined?( as_a ) || as_a.blank? )
+    as_a = :none
+  elsif ( !as_a.instance_of?( Symbol ) )
+    as_a = as_a.to_s.strip.to_sym
+  end
+  
+  if ( defined?( user ) && user.instance_of?( User ) )
+    if ( as_a == :new || as_a == :edit )
+      form_for( user ) do |f|
+-%>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label( :username ) %><br />
+    <%= f.text_field( :username ) %>
+  </p>
+  <p>
+    <%= f.label( :email ) %><br />
+    <%= f.text_field( :email ) %>
+  </p>
+  <p>
+  <%- if ( as_a == :edit ) -%>
+    <%= f.submit( 'Update' ) %>
+    <%= link_to( 'Show', user ) %>
+  <%- elsif ( as_a == :new ) -%>
+    <%= f.submit( 'Create' ) %>
+    <%= f.submit( 'Create and Add Another', { :name => '' } ) %>
+    <%= f.submit( 'Create and Edit' ) %>
+  <%- end -%>
+    <%= link_to( 'Back', users_path ) %>
+  </p>
+<%-
+    end
+  else
+-%>
+  Please provide a valid form type.
+<%-
+    end
+  else
+-%>
+  Please provide a valid user object.
+<%- end -%>
