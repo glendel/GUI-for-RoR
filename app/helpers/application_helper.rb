@@ -20,4 +20,17 @@ module ApplicationHelper
       title
     end
   end
+  
+  #----------------------------------------------------------------------------------------------------
+  # content_for_or_javascript_tag_if
+  #----------------------------------------------------------------------------------------------------
+  def content_for_or_javascript_tag_if( use_javascript_tag, name, &block )
+    if ( block_given? )
+      if ( use_javascript_tag )
+        javascript_tag( nil, {}, &block )
+      else
+        content_for( name, nil, &block )
+      end
+    end
+  end
 end

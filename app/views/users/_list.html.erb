@@ -13,7 +13,7 @@
 <%= content_tag( :button, 'New User', { :id => 'new_user' } ) %>
 <%= link_to 'New user', new_user_path %>
 <%-
-  content_for( :document_ready_ui ) do
+  content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
 -%>
   $( 'button[id^="show_user"]' ).button( {
     text : false,
