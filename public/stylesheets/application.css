@@ -116,6 +116,12 @@ input[type=text], input[type=password] {
 	margin: 1em 0px;
 }
 /************* End of the CSS for the Flash messages *************/
+
+/***************** Start of the CSS for the Tabs *****************/
+.ui-tabs .ui-tabs-nav .ui-icon {
+	float: left;
+}
+/****************** End of the CSS for the Tabs ******************/
 /********** End of the CSS to modify the jQuery UI CSS **********/
 
 /**** Start of the CSS for the Error Explanations on Rails ****/

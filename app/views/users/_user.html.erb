@@ -8,9 +8,9 @@
   if ( defined?( user ) && user.instance_of?( User ) )
     if ( as_a == :row )
 -%>
-<tr>
-  <td><%= h user.username %></td>
-  <td><%= h user.email %></td>
+<tr id="user_<%= user.id %>">
+  <td><%= h( user.username ) %></td>
+  <td><%= h( user.email ) %></td>
   <td><%= content_tag( :button, 'Show User', { :id => "show_user_#{user.id}", :href => user_path( user.id ) } ) %><%= link_to 'Show', user_path( user.id ) %></td>
   <td><%= content_tag( :button, 'Edit User', { :id => "edit_user_#{user.id}", :href => edit_user_path( user.id ) } ) %><%= link_to 'Edit', edit_user_path( user.id ) %></td>
   <td><%= content_tag( :button, 'Delete User', { :id => "delete_user_#{user.id}", :href => delete_user_path( user.id ) } ) %><%= link_to 'Delete', delete_user_path( user.id ) %></td>

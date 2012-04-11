@@ -2,9 +2,9 @@
   set_page_title( 'Users' )
   locals = {
     :link_to_list => link_to( 'List', users_path ),
-    :link_to_new => link_to( 'New', '#new_user_tab' ),
+    :link_to_new => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-plusthick' } ) + 'New', '#new_user_tab' ),
     :initial_tab_id => 'new_user_tab',
-    :initial_tab_content => render( { :partial => 'users/new' } ),
+    :initial_tab_content => render( { :partial => 'users/new', :locals => { :user => @user } } ),
     :selected => 1
   }
 -%>

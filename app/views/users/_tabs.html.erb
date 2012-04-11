@@ -39,8 +39,15 @@
 <%-
   content_for( :document_ready_ui ) do
 -%>
+  var usersTabsThatActAsLinks = <%= ( defined?( tabs_that_act_as_links ) ) ? tabs_that_act_as_links.to_json : '{}' %>;
   var usersTabsOptions = {
-    selected : <%= ( defined?( selected ) && selected.to_i > 0 ) ? selected : 0 %>
+    selected : <%= ( defined?( selected ) && selected.to_i > 0 ) ? selected : 0 %>,
+    select : function( event, ui ) {
+      if ( usersTabsThatActAsLinks[ ui.index ] ) {
+        window.location.href = $.data( ui.tab, 'href.tabs' );
+        return( false );
+      }
+    }
   };
   
   usersTabsHandler( $, usersTabsOptions );
