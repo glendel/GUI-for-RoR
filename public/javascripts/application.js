@@ -3,7 +3,7 @@
 
 // Function to apply additional styles to the application after it is already loaded.
 function applyAdditionalStyles() {
-  jQuery( 'input:text, input:password' ).addClass( 'ui-widget-content' );
+  jQuery( 'input:text, input:password' ).addClass( 'ui-widget-content ui-corner-all' );
 }
 
 // Function to handle the errors throw by the AJAX requests.
