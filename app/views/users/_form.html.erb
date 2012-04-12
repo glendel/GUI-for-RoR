@@ -18,17 +18,21 @@
     <%= f.label( :email ) %><br />
     <%= f.text_field( :email ) %>
   </p>
-  <p>
+  <div class="ui-buttonpane ui-widget-content ui-helper-clearfix">
   <%- if ( as_a == :edit ) -%>
-    <%= f.submit( 'Update' ) %>
-    <%= link_to( 'Show', user ) %>
+    <%= f.submit( 'Update', { :id => 'update_user' } ) %>
   <%- elsif ( as_a == :new ) -%>
     <%= f.submit( 'Create' ) %>
     <%= f.submit( 'Create and Add Another', { :name => '' } ) %>
     <%= f.submit( 'Create and Edit' ) %>
   <%- end -%>
-    <%= link_to( 'Back', users_path ) %>
-  </p>
+    <%= content_tag( :button, 'Cancel', { :id => 'cancel_user_form' } ) %>
+  </div>
+<%-
+    end
+    content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
+-%>
+  usersFormValidations( jQuery, '<%= as_a %>' );
 <%-
     end
   else
