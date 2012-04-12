@@ -1,5 +1,4 @@
 <h2>Listing users</h2>
-
 <table>
   <tr>
     <th>Username</th>
@@ -8,47 +7,12 @@
   </tr>
   <%= render( { :partial => 'users/users', :object => users } ) %>
 </table>
-
-<br />
-<%= content_tag( :button, 'New User', { :id => 'new_user' } ) %>
-<%= link_to 'New user', new_user_path %>
 <%-
   content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
 -%>
-  $( 'button[id^="show_user"]' ).button( {
-    text : false,
-    icons : {
-      primary : 'ui-icon-info'
-    }
-  } ).bind( 'mousedown', {
-    isADialog : true,
-    options : {
-      modal : true
-    }
-  }, buttonMouseDownHandler );
-  $( 'button[id^="edit_user"]' ).button( {
-    text : false,
-    icons : {
-      primary : 'ui-icon-pencil'
-    }
-  } ).bind( 'mousedown', {
-    
-  }, buttonMouseDownHandler );
-  $( 'button[id^="delete_user"]' ).button( {
-    text : false,
-    icons : {
-      primary : 'ui-icon-trash'
-    }
-  } ).bind( 'mousedown', {
-    data : {
-      _method : 'delete'
-    }
-  }, buttonMouseDownHandler );
-  $( '#new_user' ).button( {
-    label : 'New User'
-  } ).bind( 'mousedown', {
-    url : '<%= new_user_path %>'
-  }, buttonMouseDownHandler );
+  showUserButtonsHandler( jQuery );
+  editUserButtonsHandler( jQuery );
+  deleteUserButtonsHandler( jQuery );
 <%-
   end
 -%>
