@@ -122,6 +122,15 @@ input[type=text], input[type=password] {
 	float: left;
 }
 /****************** End of the CSS for the Tabs ******************/
+
+/******* Start of the CSS for the Buttonpane and Buttonset *******/
+.ui-buttonpane {
+	margin: 0.5em 0 0;
+	padding: 0.3em 1em 0.5em 0.4em;
+	background-image: none;
+	border-width: 1px 0 0;
+}
+/******** End of the CSS for the Buttonpane and Buttonset ********/
 /********** End of the CSS to modify the jQuery UI CSS **********/
 
 /**** Start of the CSS for the Error Explanations on Rails ****/
