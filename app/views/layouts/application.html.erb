@@ -6,6 +6,8 @@
     jquery_rails_src = '/javascripts/jquery/jquery.rails.js'
     jquery_ui_src = 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'
     jquery_layout_src = 'http://layout.jquery-dev.net/lib/js/jquery.layout-latest.js'
+    jquery_validation_src = 'http://jzaefferer.github.com/jquery-validation/jquery.validate.js'
+    jquery_form_src = 'http://malsup.github.com/jquery.form.js'
   else
     html5_src = '/javascripts/html5.js'
     jquery_ui_href = '/stylesheets/jquery/jquery.ui/themes/base/jquery.ui.css'
@@ -13,6 +15,8 @@
     jquery_rails_src = '/javascripts/jquery/jquery.rails.js'
     jquery_ui_src = '/javascripts/jquery/jquery.ui.js'
     jquery_layout_src = '/javascripts/jquery/jquery.layout.js'
+    jquery_validation_src = '/javascripts/jquery/jquery.validate.js'
+    jquery_form_src = '/javascripts/jquery/jquery.form.js'
   end
   
   stylesheets_path = File.join( RAILS_ROOT, 'public', 'stylesheets' )
@@ -75,12 +79,13 @@
     <%= yield( :bottom ) %>
 <script type="text/javascript">
 //<![CDATA[
+  var jQueryUiUrl = '<%= jquery_ui_src %>';
+  var jQueryLayoutUrl = '<%= jquery_layout_src %>';
+  var jQueryValidationUrl = '<%= jquery_validation_src %>';
+  var jQueryFormUrl = '<%= jquery_form_src %>';
+  
   jQuery( document ).ready( function( $ ) {
-    var jQueryUiUrl = '<%= jquery_ui_src %>';
-    
     $.getScript( jQueryUiUrl, function( data, textStatus ) {
-      var jQueryLayoutUrl = '<%= jquery_layout_src %>';
-      
       $.getScript( jQueryLayoutUrl, function( data, textStatus ) {
         var bodyLayoutOptions = {
           contentSelector : '.content',
