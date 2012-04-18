@@ -130,6 +130,10 @@ input[type=text], input[type=password] {
 	background-image: none;
 	border-width: 1px 0 0;
 }
+
+.ui-buttonpane button {
+	margin: 0.5em 0.4em 0.5em 0;
+}
 /******** End of the CSS for the Buttonpane and Buttonset ********/
 /********** End of the CSS to modify the jQuery UI CSS **********/
 
