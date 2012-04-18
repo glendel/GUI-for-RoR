@@ -1,2 +1,11 @@
-Are you sure you would like to delete ?<br />
-<%= content_tag( :button, 'Destroy User', { :id => "destroy_user#{user.id}", :href => url_for( { :controller => :user, :action => :destroy, :id => user.id } ) } ) %><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>
+Are you sure you would like to delete the user "<%= user.username %>" ?<br />
+<div class="ui-buttonpane ui-widget-content ui-helper-clearfix">
+  <%= content_tag( :button, 'Destroy User', { :id => "destroy_user_#{user.id}", :href => url_for( { :controller => :user, :action => :destroy, :id => user.id } ) } ) %>
+</div>
+<%-
+  content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
+-%>
+  destroyUserButtonsHandler( jQuery );
+<%-
+  end
+-%>
