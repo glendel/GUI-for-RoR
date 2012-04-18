@@ -1,0 +1,56 @@
+<div id="menus_tabs">
+  <ul>
+  <%- if ( defined?( link_to_list ) && !link_to_list.blank? ) -%>
+    <li><%= link_to_list %></li>
+  <%-
+    end
+    
+    if ( defined?( menu ) && menu.instance_of?( Menu ) )
+      if ( defined?( link_to_show ) && !link_to_show.blank? )
+  -%>
+    <li><%= link_to_show %></li>
+  <%-
+      end
+      
+      if ( defined?( link_to_edit ) && !link_to_edit.blank? )
+  -%>
+    <li><%= link_to_edit %></li>
+  <%-
+      end
+      
+      if ( defined?( link_to_delete ) && !link_to_delete.blank? )
+  -%>
+    <li><%= link_to_delete %></li>
+  <%-
+      end
+    end
+    
+    if ( defined?( link_to_new ) && !link_to_new.blank? )
+  -%>
+    <li><%= link_to_new %></li>
+  <%- end -%>
+  </ul>
+<%- if ( defined?( initial_tab_id ) && defined?( initial_tab_content ) && !initial_tab_id.blank? && !initial_tab_content.blank? ) -%>
+  <div id="<%= initial_tab_id %>">
+    <%= initial_tab_content %>
+  </div>
+<%- end -%>
+</div>
+<%-
+  content_for( :document_ready_ui ) do
+-%>
+  var menusTabsThatActAsLinks = <%= ( defined?( tabs_that_act_as_links ) ) ? tabs_that_act_as_links.to_json : '{}' %>;
+  var menusTabsOptions = {
+    selected : <%= ( defined?( selected ) && selected.to_i > 0 ) ? selected : 0 %>,
+    select : function( event, ui ) {
+      if ( menusTabsThatActAsLinks[ ui.index ] ) {
+        window.location.href = $.data( ui.tab, 'href.tabs' );
+        return( false );
+      }
+    }
+  };
+  
+  menusTabsHandler( $, menusTabsOptions );
+<%-
+  end
+-%>

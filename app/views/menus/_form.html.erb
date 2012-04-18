@@ -1,0 +1,54 @@
+<%-
+  if ( !defined?( as_a ) || as_a.blank? )
+    as_a = :none
+  elsif ( !as_a.instance_of?( Symbol ) )
+    as_a = as_a.to_s.strip.to_sym
+  end
+  
+  if ( defined?( menu ) && menu.instance_of?( Menu ) )
+    if ( as_a == :new || as_a == :edit )
+      form_for( menu ) do |f|
+-%>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label( :name ) %><br />
+    <%= f.text_field( :name ) %>
+  </p>
+  <p>
+    <%= f.label( :controller ) %><br />
+    <%= f.text_field( :controller ) %>
+  </p>
+  <p>
+    <%= f.label( :action ) %><br />
+    <%= f.text_field( :action ) %>
+  </p>
+  <p>
+    <%= f.label( :parameters ) %><br />
+    <%= f.text_field( :parameters ) %>
+  </p>
+  <div class="ui-buttonpane ui-widget-content ui-helper-clearfix">
+  <%- if ( as_a == :edit ) -%>
+    <%= f.submit( 'Update', { :id => 'update_menu' } ) %>
+  <%- elsif ( as_a == :new ) -%>
+    <%= f.submit( 'Create' ) %>
+    <%= f.submit( 'Create and Add Another', { :name => '' } ) %>
+    <%= f.submit( 'Create and Edit' ) %>
+  <%- end -%>
+    <%= content_tag( :button, 'Cancel', { :id => 'cancel_menu_form' } ) %>
+  </div>
+<%-
+    end
+    content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
+-%>
+  menusFormValidations( jQuery, '<%= as_a %>' );
+<%-
+    end
+  else
+-%>
+  Please provide a valid form type.
+<%-
+    end
+  else
+-%>
+  Please provide a valid menu object.
+<%- end -%>

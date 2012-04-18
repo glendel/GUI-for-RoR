@@ -1,0 +1,15 @@
+<%-
+  set_page_title( 'Deleting Menu' )
+  locals = {
+    :link_to_list => link_to( 'List', menus_path ),
+    :link_to_show => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-info' } ) + 'Show', menu_path( @menu.id ) ),
+    :link_to_edit => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-pencil' } ) + 'Edit', edit_menu_path( @menu.id ) ),
+    :link_to_delete => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-trash' } ) + 'Delete', '#delete_menu_tab' ),
+    :initial_tab_id => 'delete_menu_tab',
+    :initial_tab_content => render( { :partial => 'menus/delete', :locals => { :menu => @menu } } ),
+    :tabs_that_act_as_links => { 0 => true },
+    :selected => 3,
+    :menu => @menu
+  }
+-%>
+<%= render( { :partial => 'menus/tabs', :locals => locals } ) %>

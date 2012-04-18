@@ -1,15 +1,11 @@
-<h1>New menu</h1>
-
-<% form_for(@menu) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
-
-<%= link_to 'Back', menus_path %>
+<%-
+  set_page_title( 'Menus' )
+  locals = {
+    :link_to_list => link_to( 'List', menus_path ),
+    :link_to_new => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-plusthick' } ) + 'New', '#new_menu_tab' ),
+    :initial_tab_id => 'new_menu_tab',
+    :initial_tab_content => render( { :partial => 'menus/new', :locals => { :menu => @menu } } ),
+    :selected => 1
+  }
+-%>
+<%= render( { :partial => 'menus/tabs', :locals => locals } ) %>

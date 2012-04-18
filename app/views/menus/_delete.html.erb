@@ -1,0 +1,11 @@
+Are you sure you would like to delete the menu "<%= menu.name %>" ?<br />
+<div class="ui-buttonpane ui-widget-content ui-helper-clearfix">
+  <%= content_tag( :button, 'Destroy Menu', { :id => "destroy_menu_#{menu.id}", :href => url_for( { :controller => :menu, :action => :destroy, :id => menu.id } ) } ) %>
+</div>
+<%-
+  content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
+-%>
+  destroyMenuButtonsHandler( jQuery );
+<%-
+  end
+-%>

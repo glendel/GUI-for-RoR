@@ -1,20 +1,10 @@
-<h1>Listing menus</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-
-<% @menus.each do |menu| %>
-  <tr>
-    <td><%=h menu.name %></td>
-    <td><%= link_to 'Show', menu %></td>
-    <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
-    <td><%= link_to 'Destroy', menu, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New menu', new_menu_path %>
+<%-
+  set_page_title( 'Menus' )
+  locals = {
+    :link_to_list => link_to( 'List', '#menus_list_tab' ),
+    :link_to_new => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-plusthick' } ) + 'New', new_menu_path ),
+    :initial_tab_id => 'menus_list_tab',
+    :initial_tab_content => render( { :partial => 'menus/list', :locals => { :menus => @menus } } )
+  }
+-%>
+<%= render( { :partial => 'menus/tabs', :locals => locals } ) %>

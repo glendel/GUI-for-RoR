@@ -4,7 +4,9 @@ ActionController::Routing::Routes.draw do |map|
     :member => { :delete => :get }
   }
   map.resources :roles
-  map.resources :menus
+  map.resources :menus, {
+    :member => { :delete => :get }
+  }
   map.resources :menu_items
 
   # The priority is based upon order of creation: first created -> highest priority.

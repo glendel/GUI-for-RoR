@@ -1,0 +1,53 @@
+<%-
+  if ( !defined?( as_a ) || as_a.blank? )
+    as_a = :show
+  elsif ( !as_a.instance_of?( Symbol ) )
+    as_a = as_a.to_s.strip.to_sym
+  end
+  
+  if ( defined?( menu ) && menu.instance_of?( Menu ) )
+    if ( as_a == :row )
+-%>
+<tr id="menu_<%= menu.id %>">
+  <td><%= h( menu.name ) %></td>
+  <td><%= h( menu.controller ) %></td>
+  <td><%= h( menu.action ) %></td>
+  <td><%= h( menu.parameters ) %></td>
+  <td><%= content_tag( :button, 'Show Menu', { :id => "show_menu_#{menu.id}", :href => menu_path( menu.id ) } ) %></td>
+  <td><%= content_tag( :button, 'Edit Menu', { :id => "edit_menu_#{menu.id}", :href => edit_menu_path( menu.id ) } ) %></td>
+  <td><%= content_tag( :button, 'Delete Menu', { :id => "delete_menu_#{menu.id}", :href => delete_menu_path( menu.id ) } ) %></td>
+</tr>
+<%- else -%>
+<p>
+  <b>Name:</b>
+  <%= h( menu.name ) %>
+</p>
+<p>
+  <b>Controller:</b>
+  <%= h( menu.controller ) %>
+</p>
+<p>
+  <b>Action:</b>
+  <%= h( menu.action ) %>
+</p>
+<p>
+  <b>Parameters:</b>
+  <%= h( menu.parameters ) %>
+</p>
+<%-
+    end
+  else
+    if ( as_a == :row )
+-%>
+<tr>
+  <td colspan="7">Please provide a valid menu object.</td>
+</tr>
+<%- else -%>
+<p>
+  <b>Error:</b>
+  Please provide a valid menu object.
+</p>
+<%-
+    end
+  end
+-%>

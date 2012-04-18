@@ -1,0 +1,20 @@
+<h2>Listing menus</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Action</th>
+    <th>Controller</th>
+    <th>Parameters</th>
+    <th colspan="3">&nbsp;</th>
+  </tr>
+  <%= render( { :partial => 'menus/menus', :object => menus } ) %>
+</table>
+<%-
+  content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
+-%>
+  showMenuButtonsHandler( jQuery );
+  editMenuButtonsHandler( jQuery );
+  deleteMenuButtonsHandler( jQuery );
+<%-
+  end
+-%>
