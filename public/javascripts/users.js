@@ -53,6 +53,21 @@ function deleteUserButtonsHandler( $ ) {
 }
 
 /**
+ * destroyUserButtonsHandler
+ **/
+function destroyUserButtonsHandler( $ ) {
+  $( 'button[id^="destroy_user"]' ).button( {
+    icons : {
+      primary : 'ui-icon-trash'
+    }
+  } ).bind( 'mousedown', {
+    data : {
+      _method : 'delete'
+    }
+  }, buttonMouseDownHandler );
+}
+
+/**
  * usersFormValidations
  **/
 function usersFormValidations( $, as_a ) {
