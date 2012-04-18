@@ -27,7 +27,10 @@ module ApplicationHelper
   def content_for_or_javascript_tag_if( use_javascript_tag, name, &block )
     if ( block_given? )
       if ( use_javascript_tag )
-        javascript_tag( nil, {}, &block )
+        #javascript_tag( nil, {}, &block )
+        javascript_content = capture( &block )
+        javascript_content += 'applyAdditionalStyles();'
+        concat( javascript_tag( javascript_content ) )
       else
         content_for( name, nil, &block )
       end
