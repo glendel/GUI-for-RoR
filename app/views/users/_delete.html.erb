@@ -1,3 +1,4 @@
+<h1>Delete User "<%= user.username %>"</h1>
 Are you sure you would like to delete the user "<%= user.username %>" ?<br />
 <div class="ui-buttonpane ui-widget-content ui-helper-clearfix">
   <%= content_tag( :button, 'Destroy User', { :id => "destroy_user_#{user.id}", :href => url_for( { :controller => :user, :action => :destroy, :id => user.id } ) } ) %>
