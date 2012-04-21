@@ -46,9 +46,68 @@ function deleteMenuButtonsHandler( $ ) {
       primary : 'ui-icon-trash'
     }
   } ).bind( 'mousedown', {
-    data : {
-      _method : 'delete'
+    
+  }, buttonMouseDownHandler );
+}
+
+/**
+ * updateMenuButtonsHandler
+ **/
+function updateMenuButtonsHandler( $ ) {
+  $( 'button[id^="update_menu"]' ).button( {
+    icons : {
+      primary : 'ui-icon-check'
     }
+  } ).bind( 'mousedown', {
+    
+  }, buttonMouseDownHandler );
+}
+
+/**
+ * createMenuButtonsHandler
+ **/
+function createMenuButtonsHandler( $ ) {
+  $( '#create_menu' ).button( {
+    icons : {
+      primary : 'ui-icon-check'
+    }
+  } ).bind( 'mousedown', {
+    
+  }, buttonMouseDownHandler );
+}
+
+/**
+ * createAndAddAnotherMenuButtonsHandler
+ **/
+function createAndAddAnotherMenuButtonsHandler( $ ) {
+  $( '#create_and_add_another_menu' ).button( {
+    
+  } ).bind( 'mousedown', {
+    
+  }, buttonMouseDownHandler );
+}
+
+/**
+ * createAndEditMenuButtonsHandler
+ **/
+function createAndEditMenuButtonsHandler( $ ) {
+  $( '#create_and_edit_menu' ).button( {
+    
+  } ).bind( 'mousedown', {
+    
+  }, buttonMouseDownHandler );
+}
+
+/**
+ * cancelMenuButtonsHandler
+ **/
+function cancelMenuButtonsHandler( $ ) {
+  $( '#cancel_menu' ).button( {
+    icons : {
+      primary : 'ui-icon-closethick'
+    }
+  } ).bind( 'mousedown', {
+    
   }, buttonMouseDownHandler );
 }
 

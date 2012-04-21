@@ -22,17 +22,25 @@
   <%- if ( as_a == :edit ) -%>
     <%= f.submit( 'Update', { :id => 'update_user' } ) %>
   <%- elsif ( as_a == :new ) -%>
-    <%= f.submit( 'Create' ) %>
-    <%= f.submit( 'Create and Add Another', { :name => '' } ) %>
-    <%= f.submit( 'Create and Edit' ) %>
+    <%= f.submit( 'Create', { :id => 'create_user' } ) %>
+    <%= f.submit( 'Create and Add Another', { :id => 'create_and_add_another_user' } ) %>
+    <%= f.submit( 'Create and Edit', { :id => 'create_and_edit_user' } ) %>
   <%- end -%>
-    <%= content_tag( :button, 'Cancel', { :id => 'cancel_user_form' } ) %>
+    <%= content_tag( :button, 'Cancel', { :id => 'cancel_user' } ) %>
   </div>
 <%-
     end
     content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
 -%>
   usersFormValidations( jQuery, '<%= as_a %>' );
+<%- if ( as_a == :edit ) -%>
+  updateUserButtonsHandler( jQuery );
+<%- elsif ( as_a == :new ) -%>
+  createUserButtonsHandler( jQuery );
+  createAndAddAnotherUserButtonsHandler( jQuery );
+  createAndEditUserButtonsHandler( jQuery );
+<%- end -%>
+  cancelUserButtonsHandler( jQuery );
 <%-
     end
   else

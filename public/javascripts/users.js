@@ -46,9 +46,68 @@ function deleteUserButtonsHandler( $ ) {
       primary : 'ui-icon-trash'
     }
   } ).bind( 'mousedown', {
-    data : {
-      _method : 'delete'
+    
+  }, buttonMouseDownHandler );
+}
+
+/**
+ * updateUserButtonsHandler
+ **/
+function updateUserButtonsHandler( $ ) {
+  $( 'button[id^="update_user"]' ).button( {
+    icons : {
+      primary : 'ui-icon-check'
     }
+  } ).bind( 'mousedown', {
+    
+  }, buttonMouseDownHandler );
+}
+
+/**
+ * createUserButtonsHandler
+ **/
+function createUserButtonsHandler( $ ) {
+  $( '#create_user' ).button( {
+    icons : {
+      primary : 'ui-icon-check'
+    }
+  } ).bind( 'mousedown', {
+    
+  }, buttonMouseDownHandler );
+}
+
+/**
+ * createAndAddAnotherUserButtonsHandler
+ **/
+function createAndAddAnotherUserButtonsHandler( $ ) {
+  $( '#create_and_add_another_user' ).button( {
+    
+  } ).bind( 'mousedown', {
+    
+  }, buttonMouseDownHandler );
+}
+
+/**
+ * createAndEditUserButtonsHandler
+ **/
+function createAndEditUserButtonsHandler( $ ) {
+  $( '#create_and_edit_user' ).button( {
+    
+  } ).bind( 'mousedown', {
+    
+  }, buttonMouseDownHandler );
+}
+
+/**
+ * cancelUserButtonsHandler
+ **/
+function cancelUserButtonsHandler( $ ) {
+  $( '#cancel_user' ).button( {
+    icons : {
+      primary : 'ui-icon-closethick'
+    }
+  } ).bind( 'mousedown', {
+    
   }, buttonMouseDownHandler );
 }
 

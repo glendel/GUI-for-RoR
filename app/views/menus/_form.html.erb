@@ -30,17 +30,25 @@
   <%- if ( as_a == :edit ) -%>
     <%= f.submit( 'Update', { :id => 'update_menu' } ) %>
   <%- elsif ( as_a == :new ) -%>
-    <%= f.submit( 'Create' ) %>
-    <%= f.submit( 'Create and Add Another', { :name => '' } ) %>
-    <%= f.submit( 'Create and Edit' ) %>
+    <%= f.submit( 'Create', { :id => 'create_menu' } ) %>
+    <%= f.submit( 'Create and Add Another', { :id => 'create_and_add_another_menu' } ) %>
+    <%= f.submit( 'Create and Edit', { :id => 'create_and_edit_menu' } ) %>
   <%- end -%>
-    <%= content_tag( :button, 'Cancel', { :id => 'cancel_menu_form' } ) %>
+    <%= content_tag( :button, 'Cancel', { :id => 'cancel_menu' } ) %>
   </div>
 <%-
     end
     content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
 -%>
   menusFormValidations( jQuery, '<%= as_a %>' );
+<%- if ( as_a == :edit ) -%>
+  updateMenuButtonsHandler( jQuery );
+<%- elsif ( as_a == :new ) -%>
+  createMenuButtonsHandler( jQuery );
+  createAndAddAnotherMenuButtonsHandler( jQuery );
+  createAndEditMenuButtonsHandler( jQuery );
+<%- end -%>
+  cancelMenuButtonsHandler( jQuery );
 <%-
     end
   else
