@@ -1,7 +1,7 @@
 <%-
   set_page_title( 'Menu Details' )
   locals = {
-    :link_to_list => link_to( 'List', menus_path ),
+    :link_to_list => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-note' } ) + 'List', menus_path ),
     :link_to_show => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-info' } ) + 'Show', '#show_menu_tab' ),
     :link_to_edit => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-pencil' } ) + 'Edit', edit_menu_path( @menu.id ) ),
     :link_to_delete => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-trash' } ) + 'Delete', delete_menu_path( @menu.id ) ),

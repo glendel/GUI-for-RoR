@@ -1,7 +1,7 @@
 <%-
   set_page_title( 'User Details' )
   locals = {
-    :link_to_list => link_to( 'List', users_path ),
+    :link_to_list => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-note' } ) + 'List', users_path ),
     :link_to_show => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-info' } ) + 'Show', '#show_user_tab' ),
     :link_to_edit => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-pencil' } ) + 'Edit', edit_user_path( @user.id ) ),
     :link_to_delete => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-trash' } ) + 'Delete', delete_user_path( @user.id ) ),
