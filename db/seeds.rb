@@ -8,15 +8,17 @@
 
 puts 'Seeding the database with its default values :'
 
+# Hack needed to make the Admin User "created_by" and "updated_by" himself.
+User.current = User.new
+User.current.id = 1
+
 # Create Admin User
 ActiveRecord::Base.connection.execute('SET FOREIGN_KEY_CHECKS = 0')
 puts 'Creating the Admin User.'
 admin_user = User.create!( {
   :username => 'admin',
   :email => 'admin@change.me',
-  :password => 'changeme',
-  :created_by => 1,
-  :updated_by => 1
+  :password => 'changeme'
 } )
 ActiveRecord::Base.connection.execute('SET FOREIGN_KEY_CHECKS = 1')
 
