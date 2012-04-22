@@ -38,10 +38,12 @@ class ApplicationController < ActionController::Base
           authorize! action_name.to_sym, current_user
         elsif ( controller_name == 'passwords' )
           unless ( action_name == 'new' || request.post? )
-	    authorize! action_name.to_sym, current_user
-	  end
+            authorize! action_name.to_sym, current_user
+          end
         end
       end
+      
+      User.current = current_user
     end
     
     #----------------------------------------------------------------------------------------------------

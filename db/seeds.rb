@@ -20,13 +20,15 @@ admin_user = User.create!( {
 } )
 ActiveRecord::Base.connection.execute('SET FOREIGN_KEY_CHECKS = 1')
 
+# Set the Admin User as the "current_user".
+puts 'Setting the Admin User as the "current_user".'
+User.current = admin_user
+
 # Create Admin Role
 puts 'Creating the Admin Role.'
 admin_role = Role.create!( {
   :name => 'Admin',
-  :description => 'Application Administrator',
-  :created_by => admin_user.id,
-  :updated_by => admin_user.id
+  :description => 'Application Administrator'
 } )
 
 # Create the relationship between the Admin User and the Admin Role
@@ -36,45 +38,35 @@ admin_user.roles << admin_role
 # Create Admin Menu
 puts 'Creating the Admin Menu.'
 admin_menu = Menu.create!( {
-  :name => 'Admin',
-  :created_by => admin_user.id,
-  :updated_by => admin_user.id
+  :name => 'Admin'
 } )
 
 # Create Users Menu Item
 puts 'Creating the Users Menu Item.'
 users_menu_item = MenuItem.create!( {
   :name => 'Users',
-  :controller => 'users',
-  :created_by => admin_user.id,
-  :updated_by => admin_user.id
+  :controller => 'users'
 } )
 
 # Create Roles Menu Item
 puts 'Creating the Roles Menu Item.'
 roles_menu_item = MenuItem.create!( {
   :name => 'Roles',
-  :controller => 'roles',
-  :created_by => admin_user.id,
-  :updated_by => admin_user.id
+  :controller => 'roles'
 } )
 
 # Create Menus Menu Item
 puts 'Creating the Menus Menu Item.'
 menus_menu_item = MenuItem.create!( {
   :name => 'Menus',
-  :controller => 'menus',
-  :created_by => admin_user.id,
-  :updated_by => admin_user.id
+  :controller => 'menus'
 } )
 
 # Create Menu Items Menu Item
 puts 'Creating the Menu Items Menu Item.'
 menu_items_menu_item = MenuItem.create!( {
   :name => 'Menu Items',
-  :controller => 'menu_items',
-  :created_by => admin_user.id,
-  :updated_by => admin_user.id
+  :controller => 'menu_items'
 } )
 
 # Create the relationship between the Admin Menu and the Users Menu Item
