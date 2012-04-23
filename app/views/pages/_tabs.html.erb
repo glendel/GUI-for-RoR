@@ -1,0 +1,30 @@
+<div id="pages_tabs">
+  <ul>
+  <%- if ( defined?( link_to_dashboard ) && !link_to_dashboard.blank? ) -%>
+    <li><%= link_to_dashboard %></li>
+  <%- end -%>
+  </ul>
+<%- if ( defined?( initial_tab_id ) && defined?( initial_tab_content ) && !initial_tab_id.blank? && !initial_tab_content.blank? ) -%>
+  <div id="<%= initial_tab_id %>">
+    <%= initial_tab_content %>
+  </div>
+<%- end -%>
+</div>
+<%-
+  content_for( :document_ready_ui ) do
+-%>
+  var pagesTabsThatActAsLinks = <%= ( defined?( tabs_that_act_as_links ) ) ? tabs_that_act_as_links.to_json : '{}' %>;
+  var pagesTabsOptions = {
+    selected : <%= ( defined?( selected ) && selected.to_i > 0 ) ? selected : 0 %>,
+    select : function( event, ui ) {
+      if ( pagesTabsThatActAsLinks[ ui.index ] ) {
+        window.location.href = $.data( ui.tab, 'href.tabs' );
+        return( false );
+      }
+    }
+  };
+  
+  pagesTabsHandler( $, pagesTabsOptions );
+<%-
+  end
+-%>

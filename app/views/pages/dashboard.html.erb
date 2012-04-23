@@ -1,0 +1,9 @@
+<%-
+  set_page_title( 'Dashboard' )
+  locals = {
+    :link_to_dashboard => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-home' } ) + 'Dashboard', '#dashboard_tab' ),
+    :initial_tab_id => 'dashboard_tab',
+    :initial_tab_content => 'This is the home page and we can have the "Dashboard" here.'
+  }
+-%>
+<%= render( { :partial => 'pages/tabs', :locals => locals } ) %>
