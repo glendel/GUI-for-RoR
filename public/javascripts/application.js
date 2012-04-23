@@ -33,7 +33,7 @@ function buttonMouseDownHandler( eventObject ) {
     if ( typeof( href ) === 'string' ) {
       eventObject.data.url = href;
     } else {
-      throw 'Please declare a valid URL or add an "href" attribute to the object.';
+      //throw 'Please declare a valid URL or add an "href" attribute to the object.';
     }
   }
   

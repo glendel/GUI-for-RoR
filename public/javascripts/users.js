@@ -1,8 +1,13 @@
 /**
+ * Global Variables
+ **/
+var usersTabsSelector = '#users_tabs';
+
+/**
  * usersTabsHandler
  **/
 function usersTabsHandler( $, options ) {
-  $( '#users_tabs' ).tabs( options );
+  $( usersTabsSelector ).tabs( options );
 }
 
 /**
@@ -51,10 +56,10 @@ function deleteUserButtonsHandler( $ ) {
 }
 
 /**
- * updateUserButtonsHandler
+ * saveUserButtonsHandler
  **/
-function updateUserButtonsHandler( $ ) {
-  $( 'button[id^="update_user"]' ).button( {
+function saveUserButtonsHandler( $ ) {
+  $( '#save_user' ).button( {
     icons : {
       primary : 'ui-icon-check'
     }
@@ -64,23 +69,10 @@ function updateUserButtonsHandler( $ ) {
 }
 
 /**
- * createUserButtonsHandler
+ * saveAndAddAnotherUserButtonsHandler
  **/
-function createUserButtonsHandler( $ ) {
-  $( '#create_user' ).button( {
-    icons : {
-      primary : 'ui-icon-check'
-    }
-  } ).bind( 'mousedown', {
-    
-  }, buttonMouseDownHandler );
-}
-
-/**
- * createAndAddAnotherUserButtonsHandler
- **/
-function createAndAddAnotherUserButtonsHandler( $ ) {
-  $( '#create_and_add_another_user' ).button( {
+function saveAndAddAnotherUserButtonsHandler( $ ) {
+  $( '#save_and_add_another_user' ).button( {
     
   } ).bind( 'mousedown', {
     
@@ -88,10 +80,10 @@ function createAndAddAnotherUserButtonsHandler( $ ) {
 }
 
 /**
- * createAndEditUserButtonsHandler
+ * saveAndEditUserButtonsHandler
  **/
-function createAndEditUserButtonsHandler( $ ) {
-  $( '#create_and_edit_user' ).button( {
+function saveAndEditUserButtonsHandler( $ ) {
+  $( '#save_and_edit_user' ).button( {
     
   } ).bind( 'mousedown', {
     
@@ -101,14 +93,24 @@ function createAndEditUserButtonsHandler( $ ) {
 /**
  * cancelUserButtonsHandler
  **/
-function cancelUserButtonsHandler( $ ) {
+function cancelUserButtonsHandler( $, as_a ) {
   $( '#cancel_user' ).button( {
     icons : {
       primary : 'ui-icon-closethick'
     }
   } ).bind( 'mousedown', {
+    callback : function( eventObject ) {
+      if ( as_a === 'new' ) {
+        $( usersTabsSelector ).tabs( 'select', 0 );
+      } else if ( as_a === 'edit' ) {
+        $( usersTabsSelector ).tabs( 'select', 1 );
+      }
+    }
+  }, buttonMouseDownHandler ).bind( 'click', {
     
-  }, buttonMouseDownHandler );
+  }, function( eventObject ) {
+    return( false );
+  } );
 }
 
 /**

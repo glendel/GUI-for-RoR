@@ -1,8 +1,13 @@
 /**
+ * Global Variables
+ **/
+var menusTabsSelector = '#menus_tabs';
+
+/**
  * menusTabsHandler
  **/
 function menusTabsHandler( $, options ) {
-  $( '#menus_tabs' ).tabs( options );
+  $( menusTabsSelector ).tabs( options );
 }
 
 /**
@@ -51,10 +56,10 @@ function deleteMenuButtonsHandler( $ ) {
 }
 
 /**
- * updateMenuButtonsHandler
+ * saveMenuButtonsHandler
  **/
-function updateMenuButtonsHandler( $ ) {
-  $( 'button[id^="update_menu"]' ).button( {
+function saveMenuButtonsHandler( $ ) {
+  $( '#save_menu' ).button( {
     icons : {
       primary : 'ui-icon-check'
     }
@@ -64,23 +69,10 @@ function updateMenuButtonsHandler( $ ) {
 }
 
 /**
- * createMenuButtonsHandler
+ * saveAndAddAnotherMenuButtonsHandler
  **/
-function createMenuButtonsHandler( $ ) {
-  $( '#create_menu' ).button( {
-    icons : {
-      primary : 'ui-icon-check'
-    }
-  } ).bind( 'mousedown', {
-    
-  }, buttonMouseDownHandler );
-}
-
-/**
- * createAndAddAnotherMenuButtonsHandler
- **/
-function createAndAddAnotherMenuButtonsHandler( $ ) {
-  $( '#create_and_add_another_menu' ).button( {
+function saveAndAddAnotherMenuButtonsHandler( $ ) {
+  $( '#save_and_add_another_menu' ).button( {
     
   } ).bind( 'mousedown', {
     
@@ -88,10 +80,10 @@ function createAndAddAnotherMenuButtonsHandler( $ ) {
 }
 
 /**
- * createAndEditMenuButtonsHandler
+ * saveAndEditMenuButtonsHandler
  **/
-function createAndEditMenuButtonsHandler( $ ) {
-  $( '#create_and_edit_menu' ).button( {
+function saveAndEditMenuButtonsHandler( $ ) {
+  $( '#save_and_edit_menu' ).button( {
     
   } ).bind( 'mousedown', {
     
@@ -101,14 +93,24 @@ function createAndEditMenuButtonsHandler( $ ) {
 /**
  * cancelMenuButtonsHandler
  **/
-function cancelMenuButtonsHandler( $ ) {
+function cancelMenuButtonsHandler( $, as_a ) {
   $( '#cancel_menu' ).button( {
     icons : {
       primary : 'ui-icon-closethick'
     }
   } ).bind( 'mousedown', {
+    callback : function( eventObject ) {
+      if ( as_a === 'new' ) {
+        $( menusTabsSelector ).tabs( 'select', 0 );
+      } else if ( as_a === 'edit' ) {
+        $( menusTabsSelector ).tabs( 'select', 1 );
+      }
+    }
+  }, buttonMouseDownHandler ).bind( 'click', {
     
-  }, buttonMouseDownHandler );
+  }, function( eventObject ) {
+    return( false );
+  } );
 }
 
 /**

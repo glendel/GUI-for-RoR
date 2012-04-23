@@ -27,13 +27,9 @@
     <%= f.text_field( :parameters ) %>
   </p>
   <div class="ui-buttonpane ui-widget-content ui-helper-clearfix">
-  <%- if ( as_a == :edit ) -%>
-    <%= f.submit( 'Update', { :id => 'update_menu' } ) %>
-  <%- elsif ( as_a == :new ) -%>
-    <%= f.submit( 'Create', { :id => 'create_menu' } ) %>
-    <%= f.submit( 'Create and Add Another', { :id => 'create_and_add_another_menu' } ) %>
-    <%= f.submit( 'Create and Edit', { :id => 'create_and_edit_menu' } ) %>
-  <%- end -%>
+    <%= content_tag( :button, 'Save', { :id => 'save_menu', :name => 'save' } ) %>
+    <%= content_tag( :button, 'Save and Add Another', { :id => 'save_and_add_another_menu', :name => 'save_and_add_another' } ) %>
+    <%= content_tag( :button, 'Save and Edit', { :id => 'save_and_edit_menu', :name => 'save_and_edit' } ) %>
     <%= content_tag( :button, 'Cancel', { :id => 'cancel_menu' } ) %>
   </div>
 <%-
@@ -41,14 +37,10 @@
     content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
 -%>
   menusFormValidations( jQuery, '<%= as_a %>' );
-<%- if ( as_a == :edit ) -%>
-  updateMenuButtonsHandler( jQuery );
-<%- elsif ( as_a == :new ) -%>
-  createMenuButtonsHandler( jQuery );
-  createAndAddAnotherMenuButtonsHandler( jQuery );
-  createAndEditMenuButtonsHandler( jQuery );
-<%- end -%>
-  cancelMenuButtonsHandler( jQuery );
+  saveMenuButtonsHandler( jQuery );
+  saveAndAddAnotherMenuButtonsHandler( jQuery );
+  saveAndEditMenuButtonsHandler( jQuery );
+  cancelMenuButtonsHandler( jQuery, '<%= as_a %>' );
 <%-
     end
   else
