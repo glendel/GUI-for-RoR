@@ -91,11 +91,19 @@ class MenusController < ApplicationController
   # POST /menus
   # POST /menus.xml
   def create
-    @menu = Menu.new( params[:menu] )
+    @menu = Menu.new( params[ :menu ] )
     
     respond_to do |format|
       if ( @menu.save )
-        format.html { redirect_to( @menu, { :notice => 'Menu was successfully created.' } ) }
+        format.html {
+          if ( params.has_key?( :save_and_add_another ) )
+            redirect_to( new_menu_path, { :notice => 'Menu was successfully created.' } )
+          elsif ( params.has_key?( :save_and_edit ) )
+            redirect_to( edit_menu_path( @menu.id ), { :notice => 'Menu was successfully created.' } )
+          else
+            redirect_to( menu_path( @menu.id ), { :notice => 'Menu was successfully created.' } )
+          end
+        }
         format.xml  { render( { :xml => @menu, :status => :created, :location => @menu } ) }
       else
         format.html { render( { :action => 'new' } ) }
@@ -111,7 +119,15 @@ class MenusController < ApplicationController
     
     respond_to do |format|
       if ( @menu.update_attributes( params[:menu] ) )
-        format.html { redirect_to( @menu, { :notice => 'Menu was successfully updated.' } ) }
+        format.html {
+          if ( params.has_key?( :save_and_add_another ) )
+            redirect_to( new_menu_path, { :notice => 'Menu was successfully updated.' } )
+          elsif ( params.has_key?( :save_and_edit ) )
+            redirect_to( edit_menu_path( @menu.id ), { :notice => 'Menu was successfully updated.' } )
+          else
+            redirect_to( menu_path( @menu.id ), { :notice => 'Menu was successfully updated.' } )
+          end
+        }
         format.xml  { head( :ok ) }
       else
         format.html { render( { :action => 'edit' } ) }
