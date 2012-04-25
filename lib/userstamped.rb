@@ -1,11 +1,17 @@
 # http://oldwiki.rubyonrails.org/rails/pages/ExtendingActiveRecordExample
 module Userstamped
   def self.append_features( parent )
-    parent.before_save do | model |
-      model.updated_by = User.current.id if ( model.respond_to?( :updated_by ) )
+    parent.before_save do | the_object |
+      if ( the_object.respond_to?( :updated_by ) )
+        if ( User.current.instance_of?( User ) )
+          the_object.updated_by = User.current.id
+        elsif ( the_object.instance_of?( User ) )
+          the_object.updated_by = the_object.id
+        end
+      end
     end
-    parent.before_create do | model |
-      model.created_by ||= User.current.id if ( model.respond_to?( :created_by ) )
+    parent.before_create do | the_object |
+      the_object.created_by ||= User.current.id if ( the_object.respond_to?( :created_by ) )
     end
   end
 =begin
