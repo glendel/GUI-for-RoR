@@ -21,7 +21,6 @@ Status : Working on !
 * {jQuery}[http://jquery.com/] + {jquery-ujs}[http://github.com/rails/jquery-ujs] ( jQuery.rails.js ) instead of Prototype to handle the AJAX requests and JavaScript stuff.
 * {jQuery UI}[http://jqueryui.com/] UI built on top the {jQuery}[http://jquery.com/] JavaScript Library.
 * {Action Mailer}[http://guides.rubyonrails.org/v2.3.11/action_mailer_basics.html] This will allow us send and receive emails from the application.
-* {Exception Notifier}[http://github.com/smartinez87/exception_notification] Plugin to provides a mailer object for sending email notificactions when errors occur.
 * {Warden}[http://github.com/hassox/warden] General Rack Authentication Framework needed to work with {Devise}[http://github.com/plataformatec/devise].
 * {Devise}[http://github.com/plataformatec/devise] Flexible authentication solution for Rails with {Warden}[http://github.com/hassox/warden].
 * {CanCan}[http://github.com/ryanb/cancan] Authorization Gem for Ruby on Rails.
@@ -71,7 +70,6 @@ Now we are going to load into the database some seeds with values by default nee
 
 * {Episode 238 - Unobtrusive Javascript}[http://railscasts.com/episodes/205-unobtrusive-javascript]
 * {Episode 201 - Bundler}[http://railscasts.com/episodes/201-bundler]
-* {Episode 104 - Exception Notifications}[http://railscasts.com/episodes/104-exception-notifications]
 * {Episode 209 - Introducing Devise}[http://railscasts.com/episodes/209-introducing-devise]
 * {Episode 210 - Customizing Devise}[http://railscasts.com/episodes/210-customizing-devise]
 * {Episode 192 - Authorization with CanCan}[http://railscasts.com/episodes/192-authorization-with-cancan]

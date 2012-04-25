@@ -1,0 +1,9 @@
+<%-
+  set_page_title( 'Errors' )
+  locals = {
+    :link_to_list => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-note' } ) + 'List', '#errors_list_tab' ),
+    :initial_tab_id => 'errors_list_tab',
+    :initial_tab_content => render( { :partial => 'errors/list', :locals => { :errors => @errors } } )
+  }
+-%>
+<%= render( { :partial => 'errors/tabs', :locals => locals } ) %>

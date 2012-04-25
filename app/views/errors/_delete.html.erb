@@ -1,0 +1,12 @@
+<h1>Delete Error</h1>
+Are you sure you would like to delete this error ?<br />
+<div class="ui-buttonpane ui-widget-content ui-helper-clearfix">
+  <%= content_tag( :button, 'Destroy Error', { :id => "destroy_error_#{error.id}", :href => url_for( { :controller => :error, :action => :destroy, :id => error.id } ) } ) %>
+</div>
+<%-
+  content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
+-%>
+  destroyErrorButtonsHandler( jQuery );
+<%-
+  end
+-%>

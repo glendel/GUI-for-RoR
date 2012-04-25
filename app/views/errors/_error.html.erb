@@ -1,0 +1,57 @@
+<%-
+  if ( !defined?( as_a ) || as_a.blank? )
+    as_a = :show
+  elsif ( !as_a.instance_of?( Symbol ) )
+    as_a = as_a.to_s.strip.to_sym
+  end
+  
+  if ( defined?( error ) && error.instance_of?( Error ) )
+    if ( as_a == :row )
+-%>
+<tr id="error_<%= error.id %>">
+  <td><%= h( error.name ) %></td>
+  <td style="max-width:300px;"><%= h( error.message ) %></td>
+  <td><%= h( error.url ) %></td>
+  <td><%= h( error.ip_address ) %></td>
+  <td><%= h( error.user_id ) %></td>
+  <td><%= content_tag( :button, 'Show Error', { :id => "show_error_#{error.id}", :href => error_path( error.id ) } ) %></td>
+  <td><%= content_tag( :button, 'Delete Error', { :id => "delete_error_#{error.id}", :href => delete_error_path( error.id ) } ) %></td>
+</tr>
+<%- else -%>
+<p>
+  <b>Name:</b>
+  <%= h( error.name ) %>
+</p>
+<p>
+  <b>Message:</b>
+  <%= h( error.message ) %>
+</p>
+<p>
+  <b>URL:</b>
+  <%= h( error.url ) %>
+</p>
+<p>
+  <b>IP Address:</b>
+  <%= h( error.ip_address ) %>
+</p>
+<p>
+  <b>User:</b>
+  <%= h( error.user_id ) %>
+</p>
+<%-
+    end
+  else
+    if ( as_a == :row )
+-%>
+<tr>
+  <td colspan="5">Please provide a valid error object.</td>
+</tr>
+<%- else -%>
+<p>
+  <b>Error:</b>
+  Please provide a valid error object.
+</p>
+<%-
+    end
+  end
+-%>

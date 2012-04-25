@@ -1,0 +1,20 @@
+<h1>Listing errors</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Message</th>
+    <th>URL</th>
+    <th>IP Address</th>
+    <th>User</th>
+    <th colspan="2">&nbsp;</th>
+  </tr>
+  <%= render( { :partial => 'errors/errors', :object => errors } ) %>
+</table>
+<%-
+  content_for_or_javascript_tag_if( request.xhr?, :document_ready_ui ) do
+-%>
+  showErrorButtonsHandler( jQuery );
+  deleteErrorButtonsHandler( jQuery );
+<%-
+  end
+-%>

@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  message: MyString
+  url: MyString
+  ip_address: MyString
+  parameters: MyText
+  rails_root: MyString
+  user_id: 1
+  backtrace: MyText
+  session_id: MyString
+  session_data: MyText
+  filtered_env: MyText
+  process: MyString
+  server: MyString
+
+two:
+  name: MyString
+  message: MyString
+  url: MyString
+  ip_address: MyString
+  parameters: MyText
+  rails_root: MyString
+  user_id: 1
+  backtrace: MyText
+  session_id: MyString
+  session_data: MyText
+  filtered_env: MyText
+  process: MyString
+  server: MyString

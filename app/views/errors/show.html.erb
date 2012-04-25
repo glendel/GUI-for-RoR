@@ -1,0 +1,14 @@
+<%-
+  set_page_title( 'Error Details' )
+  locals = {
+    :link_to_list => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-note' } ) + 'List', errors_path ),
+    :link_to_show => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-info' } ) + 'Show', '#show_error_tab' ),
+    :link_to_delete => link_to( content_tag( :span, '', { :class => 'ui-icon ui-icon-trash' } ) + 'Delete', delete_error_path( @error.id ) ),
+    :initial_tab_id => 'show_error_tab',
+    :initial_tab_content => render( { :partial => 'errors/show', :locals => { :error => @error } } ),
+    :tabs_that_act_as_links => { 0 => true },
+    :selected => 1,
+    :error => @error
+  }
+-%>
+<%= render( { :partial => 'errors/tabs', :locals => locals } ) %>

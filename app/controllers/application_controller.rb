@@ -2,9 +2,6 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  # With this line we should receive emails with useful information to determine the errors when something goes wrong.
-  include ExceptionNotification::Notifiable
-  
   # With this line we ensure that only an authenticated user will be able to use the application.
   before_filter :authenticate_user!
   
@@ -25,7 +22,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   
   # Exceptions handlers
-  #rescue_from Exception, :with => :rescue_from_exception
+  rescue_from Exception, :with => :rescue_from_exception
   rescue_from CanCan::AccessDenied, :with => :rescue_from_cancan
   
   protected
@@ -77,6 +74,25 @@ class ApplicationController < ActionController::Base
     #----------------------------------------------------------------------------------------------------
     def set_layout
       return( ( request.xhr? ) ? nil : :application )
+    end
+    
+    #----------------------------------------------------------------------------------------------------
+    # rescue_from_exception
+    #----------------------------------------------------------------------------------------------------
+    def rescue_from_exception( exc )
+      if ( Rails.env == 'production' )
+        Error.save( exc, request, current_user )
+        
+        if ( exc.instance_of?( ActionController::RoutingError ) )
+          flash.now[:error] = 'We\'re sorry, but the page you were looking for doesn\'t exist.<br />We\'ve been notified about this issue and we\'ll take a look at it shortly,<br />but you may have mistyped the address or the page may have moved.'.html_safe
+          render( 'errors/404' )
+        else
+          flash.now[:error] = 'We\'re sorry, but something went wrong.<br />We\'ve been notified about this issue and we\'ll take a look at it shortly.'.html_safe
+          render( 'errors/500' )
+        end
+      else
+        raise
+      end
     end
     
     #----------------------------------------------------------------------------------------------------

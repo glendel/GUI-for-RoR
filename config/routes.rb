@@ -8,6 +8,10 @@ ActionController::Routing::Routes.draw do |map|
     :member => { :delete => :get }
   }
   map.resources :menu_items
+  map.resources :errors, {
+    :only => [ :index, :show ],
+    :member => { :delete => :get }
+  }
 
   # The priority is based upon order of creation: first created -> highest priority.
 
