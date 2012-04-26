@@ -22,8 +22,10 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   
   # Exceptions handlers
-  rescue_from Exception, :with => :rescue_from_exception
-  rescue_from CanCan::AccessDenied, :with => :rescue_from_cancan
+  if ( Rails.env == 'production' )
+    rescue_from Exception, :with => :rescue_from_exception
+    rescue_from CanCan::AccessDenied, :with => :rescue_from_cancan
+  end
   
   protected
     #----------------------------------------------------------------------------------------------------
@@ -80,19 +82,17 @@ class ApplicationController < ActionController::Base
     # rescue_from_exception
     #----------------------------------------------------------------------------------------------------
     def rescue_from_exception( exc )
-      if ( Rails.env == 'production' )
-        Error.save( exc, request, current_user )
-        
-        if ( exc.instance_of?( ActionController::RoutingError ) )
-          flash.now[:error] = 'We\'re sorry, but the page you were looking for doesn\'t exist.<br />We\'ve been notified about this issue and we\'ll take a look at it shortly,<br />but you may have mistyped the address or the page may have moved.'.html_safe
-          render( 'errors/404' )
-        else
-          flash.now[:error] = 'We\'re sorry, but something went wrong.<br />We\'ve been notified about this issue and we\'ll take a look at it shortly.'.html_safe
-          render( 'errors/500' )
-        end
+      Error.save( exc, request, current_user )
+      
+      if ( exc.instance_of?( ActionController::RoutingError ) )
+        flash.now[:error] = 'We\'re sorry, but the page you were looking for doesn\'t exist.<br />We\'ve been notified about this issue and we\'ll take a look at it shortly,<br />but you may have mistyped the address or the page may have moved.'.html_safe
+        render( 'errors/404' )
       else
-        raise
+        flash.now[:error] = 'We\'re sorry, but something went wrong.<br />We\'ve been notified about this issue and we\'ll take a look at it shortly.'.html_safe
+        render( 'errors/500' )
       end
+    rescue Exception => exc
+      raise
     end
     
     #----------------------------------------------------------------------------------------------------
