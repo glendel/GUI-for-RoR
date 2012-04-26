@@ -83,6 +83,7 @@
   var jQueryLayoutUrl = '<%= jquery_layout_src %>';
   var jQueryValidationUrl = '<%= jquery_validation_src %>';
   var jQueryFormUrl = '<%= jquery_form_src %>';
+  var authenticityToken = '<%= form_authenticity_token %>';
   
   jQuery( document ).ready( function( $ ) {
     $.getScript( jQueryUiUrl, function( data, textStatus ) {

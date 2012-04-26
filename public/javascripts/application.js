@@ -99,7 +99,11 @@ function buttonMouseDownHandler( eventObject ) {
         params = ( rquery.test( eventObject.data.url ) ? '&' : '?' ) + jQuery.param( data, jQuery.ajaxSettings.traditional );
       }
       
-      window.location.href = eventObject.data.url + params;
+      if ( params.search( /_method=delete/i ) >= 0 ) {
+        jQuery( '<form method="post" action="' + eventObject.data.url + params + '"><input name="_method" value="delete" /><input name="authenticity_token" value="' + authenticityToken + '" /></form>' ).trigger( 'submit' );
+      } else {
+        window.location.href = eventObject.data.url + params;
+      }
     }
   }
 }
