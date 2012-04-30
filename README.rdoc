@@ -12,6 +12,8 @@ Status : Working on !
 * Roles Management.
 * Menus Management.
 * Menu Items Management.
+* Errors Management.
+* Logs Management.
 
 == Used Tools
 
