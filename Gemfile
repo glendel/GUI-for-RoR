@@ -1,3 +1,6 @@
+#ruby=ruby-1.8.7-p334
+#ruby-gemset=GUI-for-RoR
+
 source :gemcutter
 
 # Bundler requires these gems in all environments.
